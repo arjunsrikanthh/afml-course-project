@@ -1,0 +1,46 @@
+{
+  "verdict": "PASS",
+  "checks": {
+    "six_pages": true,
+    "letter_size": true,
+    "no_unresolved_reference_marks": true,
+    "contains_public_repository": true,
+    "contains_conclusion": true,
+    "contains_all_ten_references": true,
+    "author_names": true,
+    "no_overfull_boxes": true,
+    "no_tex_error": true
+  },
+  "pages": 6,
+  "fonts": [
+    "AKHCZK+CMMI10",
+    "BZIVMZ+NimbusRomNo9L-MediItal",
+    "CAFSZL+CMBX10",
+    "CPUQYB+DejaVuSans",
+    "CREUWJ+DejaVuSans",
+    "DDIEWW+CMR10",
+    "DZGKAF+CMR6",
+    "FKPJSN+CMSY7",
+    "FZDNHS+NimbusMonL-Regu",
+    "IHAIZV+NimbusRomNo9L-Regu",
+    "IXFAWU+NimbusRomNo9L-Medi",
+    "JAGKKY+CMEX10",
+    "KPXLOM+CMMI8",
+    "NOMARO+CMMI5",
+    "PVTTLK+CMSY10",
+    "TQTHRL+CMR7",
+    "UTACNV+CMR8",
+    "VDVGTR+CMMI7",
+    "YEUUOC+NimbusRomNo9L-ReguItal",
+    "ZFGANO+DejaVuSans"
+  ],
+  "visual_review": {
+    "all_pages_inspected": true,
+    "figures_inspected_separately": true,
+    "defects_found": 0,
+    "last_page_columns_balanced": true
+  },
+  "pdf_sha256": "49c75015780630685b4d59cbd72f925a384c6d4f7c21569e214a29458fb4ac05",
+  "tex_sha256": "0ef53023e47f2be0fa1aa2d1dca409e1c816aa0c17ecd0921aba511476b0baed",
+  "remaining_warnings": "Underfull boxes from justified text; no clipping/overlap on visual inspection. Early IEEEtran/XeTeX TU font warnings precede explicit T1 font selection; final body uses embedded Nimbus Roman fonts."
+}

@@ -20,7 +20,7 @@ cd afml-course-project
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m ipykernel install --user --name python3 --display-name 'Python 3'
+python -m ipykernel install --sys-prefix --name python3 --display-name 'Python 3'
 python reproduce.py check-inputs
 python reproduce.py smoke
 python reproduce.py fetch
