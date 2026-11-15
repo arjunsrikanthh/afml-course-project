@@ -1,0 +1,13 @@
+{
+  "rows": 18,
+  "columns": [
+    "city",
+    "station_id",
+    "period",
+    "unique_label_dates",
+    "examples",
+    "first_label",
+    "last_label",
+    "eligible_fraction_of_calendar"
+  ]
+}

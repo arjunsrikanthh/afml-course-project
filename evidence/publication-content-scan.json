@@ -1,0 +1,10 @@
+{
+  "archive_sha256": "1fe7c388984c6dfdcc5e505ff741529fb6a0b6b53b0c5a1d11e515bfc056cc05",
+  "archive_and_nested_members_checked": 10707,
+  "nested_zip_archives_checked": 1,
+  "text_files_checked": 6889,
+  "forbidden_credential_paths": [],
+  "credential_or_private_email_pattern_matches": [],
+  "notebook_image_base64_excluded": true,
+  "scan_scope": "Original release ZIP including recursively nested source ZIP, and curated repository text. Pattern-based scan, not a proof that every possible secret format is absent."
+}

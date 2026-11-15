@@ -1,0 +1,12 @@
+{
+  "notebook": "AFML_02_Models_Transfer_Meta_Executed.ipynb",
+  "execution_backend": "Mac CPU via nbclient",
+  "code_cells": 9,
+  "executed_code_cells": 9,
+  "errors": [],
+  "sha256": "63f05a356fdfb3b96bf7841849bb70dcdb65ca1bad7a7d8041831f77cd048cd4",
+  "bytes": 2912472,
+  "completed_utc": "2026-11-14T14:35:33.252121+00:00",
+  "scientific_source": "frozen notebook submitted to Kaggle before target scores; only path setup changed",
+  "results": "/Users/arjun/Downloads/AFML_course_project/results/final_study_20261114/mac_models/afml_final"
+}

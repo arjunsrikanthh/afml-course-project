@@ -1,0 +1,65 @@
+{
+  "title": "Cross-City Transfer Learning for AQI Forecasting in Data-Scarce Indian Regions",
+  "design": "retrospective, frozen before this run; old pilot results and broad coverage already inspected",
+  "source_release_sha256": "014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+  "source_period": "2017\u20132025; modeling 2020\u20132025",
+  "targets": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ],
+  "dev_cities": [
+    "Chandigarh",
+    "Dewas",
+    "Jalandhar",
+    "Ajmer"
+  ],
+  "station_selection": "at least 80% observed each2020\u20132025; one per city_code ranked by2020\u20132023 observed days, numeric ID tie-break",
+  "target_selection": "six untested pilot cities in different states, chosen before forecast inspection; convenience availability cohort",
+  "source_geography_guard": "exclude any non-target representative station within25km of ANY known station in a target city, including Vatva beside Ahmedabad; current coordinates, not a historic boundary proof",
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "budget_definition": "B unique most-recent eligible target label dates <=2023-12-31, shared across3horizons (3B training pairs); preceding input context additionally available",
+  "input": "7 consecutive observed daily AQI values, issue-calendar features, horizon; no weather/peers/future inputs",
+  "forecast": "direct horizon-conditioned residual output + last AQI; continuous uncapped",
+  "horizons": [
+    1,
+    2,
+    3
+  ],
+  "donor_train": "2020\u20132022",
+  "donor_tune": "2023, development cities excluded preliminary fitting",
+  "donor_refit": "2020\u20132023 after donor-only setting selection",
+  "target_fitting_cutoff": "2023-12-31",
+  "secondary_evaluation": "2024Jan4\u2013Dec31, origins>=2024Jan1; never used for tuning",
+  "main_evaluation": "2025 all common eligible label dates; frozen2023weights with rolling observed inputs",
+  "exclusions": "unmatched identities and insufficient coverage; gaps yield ineligible windows; no imputation of inputs or truth",
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "metrics": [
+    "MAE",
+    "RMSE",
+    "bias",
+    "persistence-relative skill"
+  ],
+  "uncertainty": "seed-average paired losses; within-city14calendar-day block bootstrap, macro6city mean; conditional on these6cities",
+  "limitations": [
+    "station not city average",
+    "simulated fitting-label scarcity not naturally sparse monitoring",
+    "last-B selection confounds recency and season",
+    "test availability used for eligibility, not performance",
+    "target cities convenience sample",
+    "frozen2023model ages through2025",
+    "daily nominal1\u20133days approximate24\u201372hours; publication latency not verified",
+    "CPCB current roster not historic census"
+  ]
+}

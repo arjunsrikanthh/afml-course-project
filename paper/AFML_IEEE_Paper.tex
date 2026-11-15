@@ -1,0 +1,187 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,booktabs,array,balance}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\graphicspath{{figures/}}
+\begin{document}
+\title{Cross-City Transfer Learning for AQI Forecasting in Data-Scarce Indian Regions}
+\author{\IEEEauthorblockN{Arjun Srikanth, Ankit Umadi, Jayanth K}
+\IEEEauthorblockA{PES University, Bengaluru, India\\Team Toxic (Team 23)}}
+\maketitle
+\begin{abstract}
+Cross-city pretraining may reduce the amount of target data needed for air-quality forecasting, but improvement over a weak local network does not establish practical forecasting value. We evaluate daily overall air quality index (AQI) forecasts from official Central Pollution Control Board records using six held-out Indian cities, 23 donor cities, three target fitting-label budgets, three forecast horizons and three random seeds. The study separates pooled prediction without target fitting, target fine-tuning, local training and gradient-based meta-learning. All methods receive the same seven-day observed context; model selection uses donors only, and fitting ends in 2023 before evaluation in 2024 and 2025. A compact 23-method benchmark and an expanded 33-method study retain 4.57 million forecast records. On the six-city 2025 test, compact pooled Transformer macro mean absolute errors are 22.24, 27.15 and 29.51 AQI points at one, two and three days, against persistence errors of 23.12, 30.36 and 34.30. These are descriptive test comparisons, not a deployment selection rule. Fine-tuning often improves the corresponding local network, but none of 99 architecture--budget--horizon cells satisfies the proposal's strict joint MAE/RMSE criterion against local training and persistence. Full MAML, first-order MAML and Reptile have higher macro MAE than matched ordinary transfer in all 27 primary comparisons. The findings support a bounded empirical conclusion: cross-city pooling is useful in this cohort, while target adaptation and meta-learning require evidence beyond local-network gains.
+\end{abstract}
+\begin{IEEEkeywords}
+AQI forecasting, transfer learning, meta-learning, data scarcity, CPCB, chronological evaluation
+\end{IEEEkeywords}
+
+\section{Introduction}
+An AQI forecasting model for a station with few fitting observations can use data from other locations in several ways. It can apply a pooled model directly, adapt pooled weights using the available target labels, or learn an initialization specifically for rapid adaptation. These choices answer different questions. A lower error than training a neural network from scratch may reflect the difficulty of fitting that network to a small sample. It does not establish that adaptation improves the original pooled model, or that either model improves a simple forecast.
+
+This project studies those distinctions for daily overall AQI from the Central Pollution Control Board (CPCB). India's national AQI combines pollutant information into an index intended for public communication~\cite{cpcb_report}. We forecast the station index supplied by the official repository~\cite{cpcb_data}; we do not substitute a pollutant concentration, reconstruct AQI from unaligned covariates, or interpret one monitor as a citywide exposure estimate. The accepted project question concerns cross-city transfer under limited target data. We operationalize scarcity as a restriction on target labels used for fitting, while giving every method legal recent observed context at prediction time.
+
+We ask three primary questions. First, does donor pretraining improve on local training and on persistence or a seven-day mean? Second, does target fine-tuning add value beyond applying the pooled model directly? Third, does meta-learning improve on ordinary transfer when the backbone and adaptation optimizer are matched? Secondary comparisons examine larger networks, first- versus second-order gradients, final adaptation schedules, and donor-pool size.
+
+The contribution is an auditable empirical comparison rather than a new forecasting architecture. We retain original source files, explicit target fitting-label sets, prediction records, model settings and independent metric checks. The main result is mixed: pooled models improve useful simple forecasts, especially at longer horizons, but the proposed fine-tuning success condition is not met. Meta-learning does not improve macro MAE over the matched ordinary transfer control. Reporting these failures is necessary to answer the original research question.
+
+\section{Related Work}
+Cross-city transfer for data-scarce urban prediction predates this study. RegionTrans matches regions across cities and transfers spatiotemporal representations~\cite{regiontrans}. Its demonstration uses crowd flow; its reported improvement is not evidence about Indian AQI. Air-quality transfer has also been studied directly. Poelzl et al. investigate transfer for PM$_{10}$ prediction with limited target data~\cite{poelzl}. This establishes relevant prior art while differing from our overall-AQI target and Indian station cohort. Our study does not claim that cross-city transfer, limited-label evaluation or season-sensitive target histories are new ideas.
+
+We compare recurrent, convolutional, attention and feedforward model families. Gated recurrent units~\cite{cho} and long short-term memory networks~\cite{lstm} encode sequential dependencies; temporal convolutional networks provide another sequence-modeling approach~\cite{tcn}; Transformer self-attention offers a nonrecurrent alternative~\cite{transformer}. These references motivate standard model families rather than certify that a particular architecture should win on seven daily inputs. A compact model is therefore retained when increasing capacity and optimization effort.
+
+Model-agnostic meta-learning (MAML) trains parameters to perform well after a small number of task-specific gradient updates~\cite{maml}. First-order MAML omits second-order terms. Reptile instead moves an initialization toward task-adapted parameters~\cite{reptile}. These methods assume that the training tasks support useful adaptation on new tasks. Here, a city defines a task, and the small number of independent donor cities is a substantial limitation. We assess meta-learning against ordinary pretraining with a common differentiable GRU and native stochastic gradient descent (SGD) adaptation, rather than infer a meta-learning benefit from unmatched networks.
+
+\section{Data and Evaluation Protocol}
+\subsection{Source archive and quality checks}
+The retained versioned release contains 3,820 daily AQI workbooks spanning 2017--2025 and 769,129 decoded station-date observations. Of these observations, 758,536 match station identities in the captured official metadata and 10,593 belong to separately retained unmatched IDs. The archive includes 1,059 empty workbooks. Four values above 500 occur in 2017; they remain visible in the source-quality record. Modeling starts in 2020. The extraction checks report no duplicate station-date readings or parse failures. Original workbooks are retained with checksums, and summary rows in spreadsheet layouts are excluded from daily observations.
+
+The acquisition and modeling scopes must be distinguished. The release covers records obtained through the current CPCB station roster and indexed public exports. It is not a census of all historical Indian monitors or proof of uninterrupted operation. Empty files, unlisted station-years and missing daily values do not establish why data are unavailable. The forecasting experiment uses a selected subset, not all observations in the archive.
+
+\subsection{Cohort construction and geographic separation}
+Requiring at least 80\% observed daily values in every year from 2020 through 2025 leaves 60 stations representing 30 city codes. One representative per city is selected by the number of observed days in 2020--2023, with numeric station ID breaking ties. Six cities, in different states, form the target cohort: Amaravati, Guwahati, Ahmedabad, Pithampur, Ludhiana and Udaipur. They were chosen before inspecting the final experiment's target forecasts. This is a convenience and availability cohort, not random sampling of Indian cities.
+
+Every station in a target city is excluded from donor fitting and selection. We additionally remove non-target representative stations within 25 km of any known station in a target city. This excludes Vatva near Ahmedabad and leaves 23 donor cities. The nearest retained donor is approximately 42.6 km from a target station. The buffer uses current coordinates; it does not prove historical station separation. Chandigarh, Dewas, Jalandhar and Ajmer are held-out development cities during preliminary fitting. They may join the final donor refit after settings are selected. Target-city data never select a setting.
+
+Coverage-based selection uses availability through 2025 and thus favors consistently reporting monitors. Although test errors do not determine eligibility, this restriction conditions the population being evaluated. Furthermore, complete seven-day contexts reduce evaluation availability even at stations passing the annual threshold. Table~\ref{tab:cohort} shows the resulting target-date counts. Each listed date supplies all three horizons on common eligible labels.
+
+\begin{table}[t]
+\caption{Target stations and common eligible evaluation dates}
+\label{tab:cohort}
+\centering\small
+\begin{tabular}{lrrr}\toprule
+City & Station ID & 2024 dates & 2025 dates\\\midrule
+Amaravati & 1406 & 240 & 266\\
+Guwahati & 5073 & 177 & 135\\
+Ahmedabad & 308 & 163 & 133\\
+Pithampur & 1402 & 353 & 295\\
+Ludhiana & 253 & 320 & 304\\
+Udaipur & 1397 & 343 & 293\\\midrule
+Total & & 1,596 & 1,426\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Forecast definition and scarcity budgets}
+Let $y_{c,t}$ denote observed AQI at the representative monitor in city $c$ on issue day $t$. Each forecast uses seven consecutive observed AQIs,
+\begin{equation}
+\mathbf{x}_{c,t}=(y_{c,t-6},\ldots,y_{c,t}),
+\end{equation}
+plus issue-day annual and weekly sine/cosine phases and the horizon $h\in\{1,2,3\}$. Calendar phases use the issue day, not future observed information. AQI inputs are divided by 500, the horizon by three, and the residual target $(y_{c,t+h}-y_{c,t})$ by 100. These fixed scales require no estimated test statistics. Networks produce a direct horizon-conditioned residual,
+\begin{equation}
+\widehat y_{c,t+h}=y_{c,t}+100f_\theta(\mathbf{x}_{c,t}/500,\mathbf{k}_{t},h/3).
+\end{equation}
+Outputs are continuous and uncapped. We use no future measurements, weather or neighboring-station inputs. Missing inputs or truth make a window ineligible; no interpolation or imputation supplies them.
+
+The fitting budget $B\in\{30,90,180\}$ is the number of unique, most recent eligible target label dates through 31 December 2023. The dates are nested across budgets and shared across horizons. Each date yields three supervised pairs, so a budget of $B$ dates supplies $3B$ pairs. Preceding input context is additionally available. Consequently, this is simulated fitting-label scarcity, not an experiment in operating a sensor with only $B$ total historical measurements. Larger budgets also introduce older dates and different seasons; sample size, recency and seasonal coverage cannot be separated by this design.
+
+\subsection{Chronology and donor-only selection}
+This is a retrospective study: earlier pilot outcomes and broad source coverage had already been examined when the final protocol was frozen. The expanded design was fixed before inspecting compact-study target scores. Preliminary donor fitting uses 2020--2022. Settings and checkpoints use 2023 donor data, combining chronological validation and adaptation on the four development cities. Development cities are excluded from the corresponding preliminary fitting. After selection, donor models are refit using 2020--2023 donor data. Target local fitting and adaptation use only the stated target budgets ending in 2023. Neither target evaluation year is used for tuning, stopping or method selection.
+
+Evaluation has a secondary 2024 period, with issue dates no earlier than 1 January, and a main 2025 period. Model weights remain frozen after 2023. At each issue date, all methods receive the most recent eligible observed context. Thus, the experiment does not recursively predict an entire year from a single origin. Frozen weights with rolling inputs measure aging across two later years. The source follows the nominal daily 4 PM AQI convention; actual publication latency was not established. We therefore describe nominal one- to three-day forecasts, approximately 24--72 hours, rather than certify an operational issue-time service.
+
+\section{Methods and Statistical Analysis}
+\subsection{Baselines and ordinary transfer}
+Persistence predicts $y_{c,t}$. A seven-day mean averages the input context. The seasonal-lag control uses the corresponding earlier weekly value. Local Ridge regression, histogram gradient boosting and random forest use the same legal features and target labels; candidate settings are selected on donor pseudo-tasks. These controls expose cases where complex models fail to improve simple forecasts.
+
+The compact benchmark comprises 23 methods, including GRU, LSTM, TCN, Transformer and multilayer perceptron (MLP) families in local, pooled and fine-tuned forms, alongside baselines and first-order meta-learning. The expanded study comprises 33 methods. Its five larger families add capacity and optimization effort; it also includes matched ordinary GRU controls, full MAML, first-order MAML (FOMAML), Reptile, adaptation-optimizer arms and a six-donor ablation. The inventories overlap, so these are two benchmark runs, not 56 unique modeling ideas.
+
+For each architecture, \emph{local} initializes and fits on the target budget alone; \emph{pooled} predicts using donor-trained weights with no target fitting; and \emph{fine-tuned} starts from pooled weights and adapts on exactly the local method's target labels. Pooled predictions are repeated across budget labels for matched reporting, but are unchanged by $B$. Supervised training uses fixed-scale residual mean squared error with uniform city sampling followed by uniform example sampling within city. The residual output head starts at zero, corresponding initially to persistence. Selection uses raw-AQI donor MAE.
+
+\subsection{Capacity and optimization controls}
+Expanded GRU and LSTM models have two recurrent layers; the LSTM uses attention pooling. The TCN uses four causal residual blocks with increasing dilation. The Transformer has three encoder layers, eight attention heads and sinusoidal position encodings. The MLP uses three residual feedforward blocks. Source candidates vary hidden width (128 or 192), learning rate ($10^{-3}$ or $3\times10^{-4}$), weight decay ($10^{-4}$ or $10^{-3}$), and a 3,000- or 6,000-update cap. This joint comparison changes capacity and optimization; it does not isolate parameter count causally.
+
+Four donor-only adaptation presets are examined for each relevant arm. Deep scratch fitting uses 150 or 400 Adam updates and deep fine-tuning uses 100 or 300. The matched meta-learning backbone is an explicit two-layer GRU with width 64, allowing second-order differentiation on the chosen backend. Its ordinary-transfer controls share that backbone and native SGD adaptation. SGD candidates use learning rates 0.01 or 0.03 and 3, 10 or 30 updates. The Adam sensitivity arms use 30 or 100 final adaptation updates. No general convergence or global-optimality claim follows from these finite searches.
+
+\subsection{Meta-learning and ablations}
+For task support set $S_c$ and later query set $Q_c$, MAML optimizes
+\begin{equation}
+\min_\theta \sum_c \mathcal{L}_{Q_c}\bigl(U_{S_c}(\theta)\bigr),
+\end{equation}
+where $U_{S_c}$ performs differentiable SGD support updates. Full MAML retains differentiation through those updates. FOMAML omits the corresponding second-order terms. Reptile interpolates the initialization toward support-adapted weights. The retained raw Reptile log contains an inherited outer-optimizer label; reviewed code uses parameter interpolation. Reporting follows the executed operation.
+
+Episodes are donor-only chronological pseudo-tasks, with support budgets from the same $B$ values, 14 subsequent eligible query-label dates and at least nine full intervening calendar days between support and query labels. Each outer update samples four tasks. The four meta candidates vary inner learning rate (0.01/0.03), inner updates (three/five), outer learning rate ($10^{-3}/3\times10^{-4}$), and outer cap (1,000/1,500). Selection balances chronological donor and held-out-development adaptation MAE. Final meta adaptation primarily uses SGD; Adam is a separate optimizer-and-schedule sensitivity comparison, not differentiable Adam meta-training.
+
+A six-donor version repeats pooled, fine-tuned and MAML arms at matched update counts. Reducing the donor pool changes both task diversity and the amount of unique source data. It cannot identify a pure diversity effect. Independent finite-difference and actual Apple GPU derivative checks support the full second-order implementation. Correct derivatives establish implementation behavior, not forecasting usefulness.
+
+\subsection{Metrics, pairing and success criterion}
+Each stochastic method uses seeds 17, 43 and 71. We average absolute and squared date losses over seeds, aggregate dates within each city, and then give the six cities equal weight. City RMSE is the square root of its seed-averaged mean squared error; macro RMSE averages those six city RMSEs. It is not the square root of a pooled squared error. Persistence-relative macro MAE skill is $1-\mathrm{MAE}_{m}/\mathrm{MAE}_{p}$. All compared methods share eligible target dates and truth.
+
+For paired uncertainty we average date losses over seeds, resample overlapping 14-calendar-day blocks within each city 1,000 times, and form percentile 95\% intervals for macro differences. Calendar gaps are retained rather than compressed into adjacent observations. Cities are fixed and not resampled; the intervals describe temporal uncertainty conditional on these six cities. They are unadjusted for the many comparisons. We report per-city directions alongside macro effects; seeds and overlapping dates are not independent cities.
+
+The proposal's strict success condition requires fine-tuning to improve matching local training in both MAE and RMSE, while both local and fine-tuned models beat persistence in both errors. We apply this at each architecture--budget--horizon cell on the main 2025 test. This is distinct from asking whether a pooled model has any useful forecast skill.
+
+\section{Results}
+\subsection{Pooled prediction and strong simple controls}
+Table~\ref{tab:results} presents representative 2025 results at $B=90$; Fig.~\ref{fig:horizons} compares horizons. Persistence is a strong next-day control (MAE 23.12). The seven-day mean is weaker at one day (27.56) but improves on persistence at two and three days (29.67 and 30.91 versus 30.36 and 34.30). Seasonal lag and local tree ensembles are poor here. A single neural-versus-local comparison would conceal these differences.
+
+The compact pooled Transformer has macro MAE 22.24, 27.15 and 29.51, equivalent to persistence-relative reductions of 3.83\%, 10.58\% and 13.98\%. It improves on persistence in four of six cities at one day and all six at two and three days. In the expanded study, the lowest observed one-day MAE is 22.33 for the pooled TCN; the pooled Transformer gives 27.52 and 29.85 at two and three days. These minima follow comparison of many test methods. They are descriptive, not a model-selection procedure for deployment.
+
+\begin{table*}[t]
+\caption{Main 2025 test at 90 fitting-label dates: macro MAE / macro RMSE in AQI points. All rows use the same six cities and 1,426 eligible city-dates per horizon. Pooled rows fit no target labels. Expanded-study results except the explicitly marked compact row.}
+\label{tab:results}
+\centering\small
+\input{table_results.tex}
+\end{table*}
+
+\begin{figure*}[t]
+\centering\includegraphics[width=.88\textwidth]{horizon_comparison.pdf}
+\caption{2025 macro MAE at $B=90$. Pooled models are independent of the target fitting budget. Increasing horizon strengthens the advantage of pooled prediction over persistence. Lines join separately evaluated direct horizons.}
+\label{fig:horizons}
+\end{figure*}
+
+\subsection{Fine-tuning helps local models but can hurt pooling}
+Fine-tuning reduces matching local MAE in 40/45 compact cells and 48/54 expanded cells. It reduces local RMSE in 45/45 and 51/54, respectively. Yet the strict original condition holds in 0/99 cells. The failure arises because the full requirement includes a useful local model and improvement over persistence, not merely a favorable fine-tuned-versus-local difference.
+
+The distinction is substantial for larger networks. At $B=90$ and one day, deep GRU fine-tuning reduces local MAE from 31.93 to 28.80, but the pooled GRU without target fitting scores 22.45. Deep LSTM fine-tuning reduces local MAE from 32.83 to 26.96, while its pooled model scores 23.21. These results are consistent with harmful adaptation under a small, recent target sample. They do not prove a particular overfitting mechanism without additional controls.
+
+The matched GRU changes much less. At $B=90$, fine-tuning gives MAE 22.454 versus pooled 22.483 at one day, a paired difference of $-0.029$ with 95\% interval $[-0.133,0.031]$. Its difference from persistence is $-0.670$ with interval $[-1.409,0.031]$; four cities improve and two worsen. At two and three days, its fine-tuned MAE is 27.48 and 29.92. Small mean improvements over pooling should not be presented as a uniformly reliable next-day adaptation gain.
+
+\subsection{Matched meta-learning comparisons}
+Full MAML, FOMAML and Reptile with native SGD have lower macro MAE than ordinary matched fine-tuning in 0/27 prespecified main-test cells. None of the corresponding intervals lies wholly below zero. Fig.~\ref{fig:meta} shows the differences by budget and horizon. At $B=90$, MAML minus ordinary transfer is $1.044$ AQI points at one day (95\% interval $[0.477,1.307]$), $0.360$ at two days ($[-0.217,0.638]$), and $0.240$ at three days ($[-0.384,0.742]$). Three-day similarity at this budget is not evidence that MAML improves the control.
+
+Second-order MAML has lower macro MAE than FOMAML in 3/9 cells; only one unadjusted interval lies wholly below zero. MAML outperforms Reptile in 6/9, especially at longer horizons, but superiority to Reptile does not establish an advantage over ordinary transfer. Changing final meta adaptation to the donor-selected Adam schedules gives lower MAE than corresponding SGD in 0/27 cells. Since optimizer and schedule change together, this is not an isolated optimizer effect.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=.97\textwidth]{meta_comparison.pdf}
+\caption{Meta-learning minus matched ordinary transfer in 2025. Positive differences favor ordinary transfer. Error bars are paired 95\% calendar-block intervals conditional on the selected cities, unadjusted for multiple comparisons. All 27 point estimates are positive.}
+\label{fig:meta}
+\end{figure*}
+
+The six-donor ablation has lower MAE than the corresponding full-pool arm in 9/27 cells, with three favorable intervals. Those three occur for MAML at $B=30$. Ordinary pooled and fine-tuned six-donor models do not produce a consistent gain. Task count, unique data and donor composition change jointly, so these results do not show that fewer donors generally improve meta-learning or identify a transferable pollution mechanism.
+
+\subsection{Capacity, time sensitivity and computation}
+Larger models are not uniformly better. The expanded pooled GRU improves over its compact counterpart at one day, but the expanded pooled Transformer is worse than the compact Transformer at all three horizons. Deep local and fine-tuned models can be markedly worse. This comparison concerns a capacity-and-optimization package, not a randomized intervention on parameter count.
+
+The secondary 2024 evaluation uses the same fitted weights. For example, at $B=30$ and one day, matched fine-tuning minus persistence changes from $-0.838$ in 2024 to $-0.488$ in 2025; MAML minus matched fine-tuning changes from $0.911$ to $2.626$. Both retain their directions but vary in magnitude. Neither year was used to tune settings. Between-year differences may combine environmental variation, missing-window selection and model aging; the experiment does not identify their separate causes.
+
+The compact CPU run retains 1,876,662 forecast records and 1,644 fitting records; the expanded Apple GPU run retains 2,692,602 and 3,003. These record counts include repeated methods, seeds, budgets and horizons, and are not independent observations. Expanded summed fitting elapsed time is approximately 9,543 s, including donor validation, checkpoint work and resumed fitting time. The final invocation wall time is approximately 9,287 s. These measures are not interchangeable with inference latency or energy. Larger search budgets and more forecasts do not, by themselves, demonstrate scientific quality.
+
+\section{Reproducibility and Limitations}
+Code and reproducibility materials are available at \url{https://github.com/arjunsrikanthh/afml-course-project} (release \texttt{study-v1.0.0}). The delivery retains four executed notebooks: source/EDA, compact modeling, expanded research and final synthesis. The source archive has SHA-256 prefix \texttt{014fa6ab88854a96}; the frozen expanded engine has prefix \texttt{7e8c51383d43715d}. Full hashes, settings, fitting records, weights, forecasts, eligibility tables and audit outputs accompany the project package. The paper's figure script reads saved metric and paired-comparison tables, and does not refit models or select winners.
+
+An independent artifact audit passes nine checks for the compact study and twelve for the expanded study, with zero critical failures. Checks cover source checksums, whole-city exclusions, legal features and truth, nested budgets, fitting chronology, donor-only candidate rankings, explicit target label sets, recorded derivative evidence and recomputed city/seed and macro metrics. The expanded audit does not import or rerun the model engine. Its scope is artifact consistency, chronology and metric reconstruction; it does not prove every declared hardware update, independently reparse all workbook cells with a second parser, or certify bootstrap interpretation. This distinction bounds what ``verified'' means.
+
+Several limits constrain external validity. Six targets cannot establish nationwide generalization. Annual availability screening selects well-reported stations, and common complete windows leave only 133 and 135 main-test dates in Ahmedabad and Guwahati. Scarcity is simulated by withholding fitting labels while retaining recent context, so naturally sparse monitors may behave differently. The latest-$B$ design confounds sample size with recency and season. One monitor per city is not a city average. Current metadata and coordinates cannot resolve all historical station changes.
+
+Only seven AQI lags and calendar features are used. We do not test longer histories, verified weather forecasts, causal transport, spatial graphs or publication-time revisions. Frozen 2023 fitting is useful for a controlled comparison but differs from routine rolling refits. Hyperparameter searches can overfit donor validation, and finite optimization is not proof of optimal training. Temporal bootstrap intervals hold cities fixed and do not adjust for multiple testing. Negative findings therefore concern these implementations, tasks and schedules, rather than rule out meta-learning for air quality.
+
+Further work should predeclare fresh target cities and rolling-origin refits; compare alternative target blocks that reduce recency/season confounding; match unique source volume when testing donor diversity; verify historical station identity and issue-time availability; and evaluate pollution-change and severe-event calibration with adequate counts. A final untouched external cohort would be needed before a deployment recommendation.
+
+\balance
+\section{Conclusion}
+For six held-out CPCB station series, pooled cross-city forecasting provides useful daily AQI skill, with the clearest gains over persistence at two and three days. Fine-tuning frequently improves a local neural network while degrading a stronger pooled starting point. None of 99 cells meets the original joint MAE/RMSE success criterion, and gradient-based meta-learning does not improve macro MAE over matched ordinary transfer in 27 primary comparisons. The practical lesson from this study is to evaluate pooling, adaptation and meta-learning separately, with strong simple controls, fixed chronology and the same observed context. Broader geographic or operational claims require new evidence.
+
+\begin{thebibliography}{10}
+\bibitem{cpcb_report} Central Pollution Control Board, \emph{National Air Quality Index}, Control of Urban Pollution Series CUPS/82/2014-15, 2014. [Online]. Available: \url{https://airquality.cpcb.gov.in/ccr_docs/FINAL-REPORT_AQI_.pdf}
+\bibitem{cpcb_data} Central Pollution Control Board, ``AQI repository,'' Central Control Room for Air Quality Management. Source snapshot: Nov. 14, 2026. [Online]. Available: \url{https://airquality.cpcb.gov.in/ccr/#/repository/aqi}
+\bibitem{regiontrans} L. Wang, X. Geng, X. Ma, F. Liu, and Q. Yang, ``Cross-city transfer learning for deep spatio-temporal prediction,'' in \emph{Proc. IJCAI}, 2019, pp. 1893--1899, doi: 10.24963/ijcai.2019/262.
+\bibitem{poelzl} M. Poelzl, R. Kern, S. Kecorius, and M. Lovri\'{c}, ``Exploration of transfer learning techniques for the prediction of PM$_{10}$,'' \emph{Scientific Reports}, vol. 15, art. 2919, 2025, doi: 10.1038/s41598-025-86550-6.
+\bibitem{cho} K. Cho et al., ``Learning phrase representations using RNN encoder--decoder for statistical machine translation,'' in \emph{Proc. EMNLP}, 2014, pp. 1724--1734, doi: 10.3115/v1/D14-1179.
+\bibitem{lstm} S. Hochreiter and J. Schmidhuber, ``Long short-term memory,'' \emph{Neural Computation}, vol. 9, no. 8, pp. 1735--1780, 1997, doi: 10.1162/neco.1997.9.8.1735.
+\bibitem{tcn} S. Bai, J. Z. Kolter, and V. Koltun, ``An empirical evaluation of generic convolutional and recurrent networks for sequence modeling,'' arXiv:1803.01271, 2018.
+\bibitem{transformer} A. Vaswani et al., ``Attention is all you need,'' in \emph{Advances in Neural Information Processing Systems}, vol. 30, 2017.
+\bibitem{maml} C. Finn, P. Abbeel, and S. Levine, ``Model-agnostic meta-learning for fast adaptation of deep networks,'' in \emph{Proc. ICML}, PMLR, vol. 70, 2017, pp. 1126--1135.
+\bibitem{reptile} A. Nichol, J. Achiam, and J. Schulman, ``On first-order meta-learning algorithms,'' arXiv:1803.02999, 2018.
+\end{thebibliography}
+\end{document}

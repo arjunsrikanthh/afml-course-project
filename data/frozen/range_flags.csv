@@ -1,0 +1,5 @@
+station_id,date,aqi,city
+114,2017-10-05,672.0,Delhi
+253,2017-09-21,802.0,Ludhiana
+253,2017-09-22,733.0,Ludhiana
+253,2017-09-25,900.0,Ludhiana

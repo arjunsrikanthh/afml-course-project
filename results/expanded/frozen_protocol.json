@@ -1,0 +1,399 @@
+{
+  "title": "Cross-City Transfer Learning for AQI Forecasting in Data-Scarce Indian Regions",
+  "design": "retrospective, frozen before this run; old pilot results and broad coverage already inspected",
+  "source_release_sha256": "014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+  "source_period": "2017\u20132025; modeling 2020\u20132025",
+  "targets": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ],
+  "dev_cities": [
+    "Chandigarh",
+    "Dewas",
+    "Jalandhar",
+    "Ajmer"
+  ],
+  "station_selection": "at least 80% observed each2020\u20132025; one per city_code ranked by2020\u20132023 observed days, numeric ID tie-break",
+  "target_selection": "six untested pilot cities in different states, chosen before forecast inspection; convenience availability cohort",
+  "source_geography_guard": "exclude any non-target representative station within25km of ANY known station in a target city, including Vatva beside Ahmedabad; current coordinates, not a historic boundary proof",
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "budget_definition": "B unique most-recent eligible target label dates <=2023-12-31, shared across3horizons (3B training pairs); preceding input context additionally available",
+  "input": "7 consecutive observed daily AQI values, issue-calendar features, horizon; no weather/peers/future inputs",
+  "forecast": "direct horizon-conditioned residual output + last AQI; continuous uncapped",
+  "horizons": [
+    1,
+    2,
+    3
+  ],
+  "donor_train": "2020\u20132022",
+  "donor_tune": "2023, development cities excluded preliminary fitting",
+  "donor_refit": "2020\u20132023 after donor-only setting selection",
+  "target_fitting_cutoff": "2023-12-31",
+  "secondary_evaluation": "2024Jan4\u2013Dec31, origins>=2024Jan1; never used for tuning",
+  "main_evaluation": "2025 all common eligible label dates; frozen2023weights with rolling observed inputs",
+  "exclusions": "unmatched identities and insufficient coverage; gaps yield ineligible windows; no imputation of inputs or truth",
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "metrics": [
+    "MAE",
+    "RMSE",
+    "bias",
+    "persistence-relative skill"
+  ],
+  "uncertainty": "seed-average paired losses; within-city14calendar-day block bootstrap, macro6city mean; conditional on these6cities",
+  "limitations": [
+    "station not city average",
+    "simulated fitting-label scarcity not naturally sparse monitoring",
+    "last-B selection confounds recency and season",
+    "test availability used for eligibility, not performance",
+    "target cities convenience sample",
+    "frozen2023model ages through2025",
+    "daily nominal1\u20133days approximate24\u201372hours; publication latency not verified",
+    "CPCB current roster not historic census"
+  ],
+  "input_cache_manifest_sha256": "c14a8b1e62d6a21f988695e44bdc7e8f4d382745f2ce840e6fbd2372ca1dd24c",
+  "target_cities": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ],
+  "expected_periods": [
+    "secondary_2024",
+    "test_2025"
+  ],
+  "latest_fit_cutoff": "2023-12-31",
+  "research_tier": "capacity, full MAML, optimizer and donor-pool experiments",
+  "expected_methods": [
+    "persistence",
+    "seasonal7",
+    "mean7",
+    "ridge_local",
+    "histgb_local",
+    "randomforest_local",
+    "deep_gru_local",
+    "deep_gru_pooled_zero",
+    "deep_gru_finetune",
+    "deep_lstm_local",
+    "deep_lstm_pooled_zero",
+    "deep_lstm_finetune",
+    "deep_tcn_local",
+    "deep_tcn_pooled_zero",
+    "deep_tcn_finetune",
+    "deep_transformer_local",
+    "deep_transformer_pooled_zero",
+    "deep_transformer_finetune",
+    "deep_mlp_local",
+    "deep_mlp_pooled_zero",
+    "deep_mlp_finetune",
+    "matched_gru_local",
+    "matched_gru_pooled_zero",
+    "matched_gru_finetune",
+    "maml_gru_sgd",
+    "maml_gru_adam",
+    "fomaml_gru_sgd",
+    "fomaml_gru_adam",
+    "reptile_gru_sgd",
+    "reptile_gru_adam",
+    "diversity6_pooled_zero",
+    "diversity6_finetune",
+    "diversity6_maml_sgd"
+  ],
+  "model_config": {
+    "seeds": [
+      17,
+      43,
+      71
+    ],
+    "budgets": [
+      30,
+      90,
+      180
+    ],
+    "architectures": [
+      "gru",
+      "lstm",
+      "tcn",
+      "transformer",
+      "mlp"
+    ],
+    "hidden_size": 32,
+    "batch_size": 256,
+    "num_threads": 2,
+    "device": "mps",
+    "pooled_steps": 600,
+    "pooled_lr": 0.001,
+    "eval_every": 60,
+    "weight_decay": 0.0001,
+    "grad_clip": 1.0,
+    "adaptation_presets": [
+      {
+        "lr": 0.001,
+        "steps": 100
+      },
+      {
+        "lr": 0.0003,
+        "steps": 100
+      }
+    ],
+    "scratch_presets": [
+      {
+        "lr": 0.001,
+        "steps": 100
+      },
+      {
+        "lr": 0.003,
+        "steps": 250
+      }
+    ],
+    "pseudo_budgets": null,
+    "pseudo_query_days": null,
+    "meta_steps": 360,
+    "meta_tasks": 4,
+    "meta_inner_steps": 3,
+    "meta_inner_lr": 0.01,
+    "meta_outer_lr": 0.001,
+    "reptile_outer_lr": 0.1,
+    "meta_query_days": 14,
+    "meta_validation_budget": 90,
+    "purge_days": 9,
+    "dev_cities": [
+      "Chandigarh",
+      "Dewas",
+      "Jalandhar",
+      "Ajmer"
+    ],
+    "ridge_alpha": 10.0,
+    "histgb_iterations": 100,
+    "rf_trees": 128,
+    "ridge_presets": [
+      {
+        "alpha": 1.0
+      },
+      {
+        "alpha": 100.0
+      }
+    ],
+    "histgb_presets": [
+      {
+        "min_samples_leaf": 5,
+        "l2_regularization": 1.0
+      },
+      {
+        "min_samples_leaf": 15,
+        "l2_regularization": 10.0
+      }
+    ],
+    "randomforest_presets": [
+      {
+        "min_samples_leaf": 1,
+        "max_depth": null
+      },
+      {
+        "min_samples_leaf": 3,
+        "max_depth": 6
+      }
+    ],
+    "resume": true,
+    "save_target_states": false,
+    "smoke": false,
+    "source_batch_size": 256,
+    "meta_batch_size": 32,
+    "source_eval_every": 300,
+    "source_min_steps": 600,
+    "source_patience": 4,
+    "meta_eval_every": 150,
+    "meta_min_steps": 300,
+    "meta_patience": 4,
+    "source_grid": [
+      {
+        "hidden": 128,
+        "lr": 0.001,
+        "weight_decay": 0.0001,
+        "steps": 3000
+      },
+      {
+        "hidden": 128,
+        "lr": 0.0003,
+        "weight_decay": 0.0001,
+        "steps": 6000
+      },
+      {
+        "hidden": 192,
+        "lr": 0.001,
+        "weight_decay": 0.001,
+        "steps": 3000
+      },
+      {
+        "hidden": 192,
+        "lr": 0.0003,
+        "weight_decay": 0.001,
+        "steps": 6000
+      }
+    ],
+    "meta_grid": [
+      {
+        "inner_lr": 0.01,
+        "outer_lr": 0.001,
+        "inner_steps": 3,
+        "steps": 1000
+      },
+      {
+        "inner_lr": 0.03,
+        "outer_lr": 0.001,
+        "inner_steps": 3,
+        "steps": 1500
+      },
+      {
+        "inner_lr": 0.01,
+        "outer_lr": 0.0003,
+        "inner_steps": 5,
+        "steps": 1500
+      },
+      {
+        "inner_lr": 0.03,
+        "outer_lr": 0.0003,
+        "inner_steps": 5,
+        "steps": 1500
+      }
+    ],
+    "reptile_outer_scale": 100.0,
+    "deep_scratch_grid": [
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 150,
+        "weight_decay": 0.0001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 150,
+        "weight_decay": 0.0001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 400,
+        "weight_decay": 0.001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 400,
+        "weight_decay": 0.001
+      }
+    ],
+    "deep_finetune_grid": [
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 100,
+        "weight_decay": 0.0001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 100,
+        "weight_decay": 0.0001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 300,
+        "weight_decay": 0.001
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 300,
+        "weight_decay": 0.001
+      }
+    ],
+    "native_sgd_grid": [
+      {
+        "optimizer": "sgd",
+        "lr": 0.01,
+        "steps": 3,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "sgd",
+        "lr": 0.03,
+        "steps": 10,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "sgd",
+        "lr": 0.01,
+        "steps": 30,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "sgd",
+        "lr": 0.03,
+        "steps": 30,
+        "weight_decay": 0.0
+      }
+    ],
+    "meta_adam_grid": [
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 30,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 30,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.0003,
+        "steps": 100,
+        "weight_decay": 0.0
+      },
+      {
+        "optimizer": "adam",
+        "lr": 0.001,
+        "steps": 100,
+        "weight_decay": 0.0
+      }
+    ],
+    "manual_hidden": 64,
+    "manual_layers": 2,
+    "deep_layers": 2,
+    "diversity_donors": 6,
+    "hpo_development_weight": 0.5,
+    "hpo_seed": 17,
+    "source_hpo_adaptation_steps": 60,
+    "compute_budget_seconds": 14220,
+    "checkpoint_every_seconds": 180,
+    "include_baselines": true,
+    "include_meta": true,
+    "include_diversity": true
+  },
+  "frozen_utc": "2026-11-14T14:45:37.921708+00:00",
+  "implementation_sha256": {
+    "final_model_engine.py": "7b00b1ff622bf06ba7e95b6af5af7fa0d2acdebd2c662314fdd5716be7a8e0a5",
+    "final_evaluation.py": "aba59e3335a33af2fc6b261e11597153af1f2764e17a89a5aefc104df1bf54d6",
+    "load_research_inputs.py": "60908abe8f214810f9b02a8c8aa8b2ecbaf3e525dff7a848b5cdf6302dd2cd83",
+    "research_model_engine.py": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969",
+    "research_analysis.py": "1b2e97dccfc53e75b79b55543bf2903ad518f52ea30d2a71f8e0cb5c6160e440"
+  }
+}

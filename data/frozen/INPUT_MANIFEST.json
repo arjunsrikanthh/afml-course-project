@@ -1,0 +1,74 @@
+{
+  "development_seasonality.csv": {
+    "sha256": "c1e65651aa6133fa15c4f72a3cee0b5089a75879c295a230e8afe2a92de47702",
+    "bytes": 107568
+  },
+  "observations.csv.gz": {
+    "sha256": "1d9a1f58db1dcf5e8ecc2b3b636af11650976044e0697fad2f387c93167fd405",
+    "bytes": 3568447,
+    "uncompressed_bytes": 64079928,
+    "uncompressed_sha256": "a3534019d28d2b47cbf592edfdab18de207eada65dd752749210335b64ba3bcc"
+  },
+  "development_by_year.csv": {
+    "sha256": "badad2f56adbffbad0a7fe200ef5f349776e6bdb364a3dfd25d50415dec78b3e",
+    "bytes": 198
+  },
+  "eda_seasonality.png": {
+    "sha256": "a5b73d69abe443e914ac7838d727b4e131debc648a46a313cf26e7efad28dfc5",
+    "bytes": 148773
+  },
+  "raw_integrity.csv": {
+    "sha256": "d9f122bd6219efc5f9a5ff45d7e4c0068cbb54c217075b90ef1d60f61cc313c8",
+    "bytes": 392955
+  },
+  "data_summary.json": {
+    "sha256": "898389a4f10391b822c620d1486665c3b2ae23a38a87e52d353e941fb5369a0a",
+    "bytes": 761
+  },
+  "eligible_stations.csv": {
+    "sha256": "e4923df8c92e00f01cfd066b5581bfb4d74bd3d132cb47ada3482ff2013ba2f5",
+    "bytes": 17812
+  },
+  "forecast_examples.csv.gz": {
+    "sha256": "4b4b18f6911680ed089b09aaf41f97b7856241b0544311a69191e71141feacb4",
+    "bytes": 1739363,
+    "uncompressed_bytes": 16311426,
+    "uncompressed_sha256": "0df660c550a8400e46f21a1459282ce3078c187db92a81035fd47de264e3365f"
+  },
+  "range_flags.csv": {
+    "sha256": "0fff06a08a89d98fb1c3b9658b155db4a657bf7406553701738688d3b5591984",
+    "bytes": 142
+  },
+  "development_autocorrelation.csv": {
+    "sha256": "015d4f7b5137275d3e5e7836f606af63efe8467e58fbcac31556355da3eeeab2",
+    "bytes": 3313
+  },
+  "eligibility.csv": {
+    "sha256": "623a92db76645caaddcec16a6d772c44771196efc48ef2fe0be86eb9786f10f9",
+    "bytes": 1331
+  },
+  "station_year_coverage.csv": {
+    "sha256": "bb88fe090f7a5ff40ce102433d0d3dd2cb8d4ab6196541b2672f6dce9e17095c",
+    "bytes": 516623
+  },
+  "cohort.csv": {
+    "sha256": "620d1d43b721063ddea8db98b24a83f7a5c0149c36a10fde3db04d54e3200577",
+    "bytes": 9946
+  },
+  "protocol.json": {
+    "sha256": "99fdeeb2d1c99bafd7bacf17b8cd19090c69dc888ace3d7d684c68cb06157738",
+    "bytes": 2814
+  },
+  "unmatched_ids.csv": {
+    "sha256": "40cc02ca07de29b81204478619a67bd0895a40692bd98a46b9c5fa2593d7c454",
+    "bytes": 93
+  },
+  "development_distribution.csv": {
+    "sha256": "89aac77fa66344b955b2d8d052938e13ad45473b5a4e9ca9c4fa3808633adcca",
+    "bytes": 149
+  },
+  "eda_source.png": {
+    "sha256": "591f8ed0652f1bf54e1b25e7f8fc41f543703f45ee5e070455bc3888bc92a3c5",
+    "bytes": 190175
+  }
+}

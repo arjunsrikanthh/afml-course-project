@@ -1,0 +1,15 @@
+study,stage,fits,seconds,maximum_parameters
+compact,donor_checkpoint_selection,15,108.83142333398428,8801.0
+compact,donor_fixed_refit,15,66.18617237397848,8801.0
+compact,donor_meta_checkpoint_selection,6,54.587762291004765,3873.0
+compact,donor_meta_fixed_refit,6,42.160790166999504,3873.0
+compact,donor_pseudo_candidate,360,89.18858966907283,8801.0
+compact,target_fit,1242,200.79337670502719,8801.0
+expanded,donor_adaptation_candidate,864,1485.1413451240078,596097.0
+expanded,donor_diversity_fixed_refit,6,1342.7051714590343,38849.0
+expanded,donor_fixed_refit,18,397.97511520795524,596097.0
+expanded,donor_hpo_development,288,189.12627845891257,1336513.0
+expanded,donor_hpo_meta,12,2245.9031881249975,38849.0
+expanded,donor_hpo_source,24,805.2975250830059,1336513.0
+expanded,donor_meta_fixed_refit,9,1824.2675432510005,38849.0
+expanded,target_fit,1782,1252.797465576994,596097.0

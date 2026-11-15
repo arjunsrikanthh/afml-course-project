@@ -1,0 +1,11 @@
+{
+  "notebook": "AFML_03_Advanced_Research_Executed.ipynb",
+  "execution_backend": "Mac Apple GPU/MPS via nbclient",
+  "code_cells": 11,
+  "executed_code_cells": 11,
+  "errors": [],
+  "sha256": "6bbf8256acfac39efea272fbaca6ba9ccc16cbd14319ad4f0ff81d5515a08184",
+  "bytes": 2492751,
+  "completed_utc": "2026-11-14T17:30:59.913362+00:00",
+  "results": "/Users/arjun/Downloads/AFML_course_project/results/final_study_20261114/mac_research/afml_research"
+}
