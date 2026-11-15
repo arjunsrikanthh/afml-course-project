@@ -2,7 +2,7 @@
 
 A reproducible undergraduate study of daily overall AQI from India's Central Pollution Control Board (CPCB). We compare target-only training, pooled pretraining, target fine-tuning and meta-learning under limited target fitting labels. The experiment retains negative results and uses strong simple forecasts as controls.
 
-**Team Toxic (23)** · Arjun Srikanth (PES1UG24AM920), Ankit Umadi (PES1UG24AM422), Jayanth K (PES1UH24AM123).
+**Team Toxic (23)** · Arjun Srikanth (PES1UG24AM920), Ankit Umadi (PES1UG24AM422), Jayanth K (PES1UG24AM123).
 
 Start with the [executed research synthesis](notebooks/executed/AFML_04_Final_Research_Synthesis_Executed.ipynb). The [IEEE-format paper](paper/) and [presentation](slides/) explain the study. The [public frozen release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) preserves the original source bytes, forecasts, fitting journals, saved weights and independent audits.
 
