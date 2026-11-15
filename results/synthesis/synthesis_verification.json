@@ -1,0 +1,28 @@
+{
+  "studies": [
+    {
+      "study": "compact",
+      "methods": 23,
+      "training_device": "cpu",
+      "hardware": null,
+      "forecasts": 1876662,
+      "fit_records": 1644,
+      "independent_checks_passed": 9
+    },
+    {
+      "study": "expanded",
+      "methods": 33,
+      "training_device": "mps",
+      "hardware": null,
+      "forecasts": 2692602,
+      "fit_records": 3003,
+      "independent_checks_passed": 12
+    }
+  ],
+  "source_release_sha256": "014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+  "shared_examples_and_evaluation_contexts_verified": true,
+  "independent_artifact_hash_checks_passed": true,
+  "saved_macro_mae_rmse_and_bias_recomputed": true,
+  "main_test": "2025",
+  "secondary_test": "2024"
+}

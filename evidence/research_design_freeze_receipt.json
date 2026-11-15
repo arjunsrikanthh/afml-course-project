@@ -1,0 +1,16 @@
+{
+  "recorded_utc": "2026-11-14T14:50:20.970663+00:00",
+  "protocol_sha256": "ce060ba0985eee430464cfa5ec3dd116aad41a46097b7f930cfb5ea43cb4d231",
+  "protocol": "results/final_study_20261114/mac_research/afml_research/frozen_protocol.json",
+  "research_engine_sha256": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969",
+  "coordinator_new_target_errors_inspected": false,
+  "research_progress": {
+    "actual_steps": 300,
+    "fit_seconds": 3.8226886659977026,
+    "last_completed_fit": "adapt_deep_gru_finetune_c3_t1",
+    "selected_step": 300,
+    "stage": "donor_adaptation_candidate",
+    "train_cities": 1
+  },
+  "scope": "33 predeclared research methods; models/tuning grids fixed before inspecting compact target metrics"
+}

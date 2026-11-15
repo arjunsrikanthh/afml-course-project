@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: 'Cite this undergraduate research artifact together with CPCB and the exact archived source snapshot.'
+type: software
+title: 'Cross-City Transfer Learning for AQI Forecasting in Data-Scarce Indian Regions'
+version: 1.0.0
+date-released: 2026-11-15
+repository-code: 'https://github.com/arjunsrikanthh/afml-course-project'
+authors:
+  - family-names: Srikanth
+    given-names: Arjun
+  - family-names: Umadi
+    given-names: Ankit
+  - family-names: K
+    given-names: Jayanth
+abstract: 'Frozen daily overall-AQI study with six held-out target cities, donor-only selection, fitting-label budgets and independently audited reference and expanded transfer/meta-learning comparisons. The station cohort is retrospective and results do not establish nationwide generalization.'

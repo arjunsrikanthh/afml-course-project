@@ -1,0 +1,14 @@
+{
+  "release": "study-v1.0.0",
+  "repository": "arjunsrikanthh/afml-course-project",
+  "assets": {
+    "AFML_Complete_Executed_Notebooks.zip": {
+      "sha256": "1fe7c388984c6dfdcc5e505ff741529fb6a0b6b53b0c5a1d11e515bfc056cc05",
+      "bytes": 224820338
+    },
+    "CPCB_AQI_Source_Release_v1.zip": {
+      "sha256": "014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+      "bytes": 26551652
+    }
+  }
+}

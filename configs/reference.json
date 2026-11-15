@@ -1,0 +1,49 @@
+{
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "architectures": [
+    "gru",
+    "lstm",
+    "tcn",
+    "transformer",
+    "mlp"
+  ],
+  "hidden_size": 32,
+  "batch_size": 256,
+  "pooled_steps": 2000,
+  "pooled_lr": 0.001,
+  "eval_every": 200,
+  "local_steps": 100,
+  "adaptation_presets": [
+    {
+      "lr": 0.001,
+      "steps": 60
+    },
+    {
+      "lr": 0.0003,
+      "steps": 120
+    }
+  ],
+  "meta_steps": 800,
+  "meta_tasks": 3,
+  "meta_inner_steps": 3,
+  "meta_inner_lr": 0.01,
+  "meta_outer_lr": 0.001,
+  "reptile_outer_lr": 0.1,
+  "pseudo_query_days": 60,
+  "dev_cities": [
+    "Chandigarh",
+    "Dewas",
+    "Jalandhar",
+    "Ajmer"
+  ],
+  "num_threads": 2
+}

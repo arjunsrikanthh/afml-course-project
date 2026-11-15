@@ -1,0 +1,7 @@
+study,kind,cells,improved,degraded,interval_favors_method,interval_favors_reference
+compact,finetune_minus_local,45,40,5,34,0
+compact,finetune_minus_pooled_zero,45,0,45,0,43
+compact,pooled_zero_minus_local,45,45,0,43,0
+expanded,finetune_minus_local,54,48,6,40,2
+expanded,finetune_minus_pooled_zero,63,15,48,9,45
+expanded,pooled_zero_minus_local,54,54,0,51,0

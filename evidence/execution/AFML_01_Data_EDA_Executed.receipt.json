@@ -1,0 +1,10 @@
+{
+  "kernel": "noqtar/afml-01-cpcb-data-eda-and-frozen-protocol",
+  "version": 3,
+  "bytes": 571734,
+  "sha256": "55dad2815e249ee92c8f0f4fc0dd53defecdc145d4e58e58858956845ab2e281",
+  "code_cells": 4,
+  "executed_code_cells": 4,
+  "errors": [],
+  "downloaded_utc": "2026-11-14T14:20:03.042663+00:00"
+}

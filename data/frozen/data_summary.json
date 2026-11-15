@@ -1,0 +1,31 @@
+{
+  "workbooks": 3820,
+  "observations": 769129,
+  "matched_observations": 758536,
+  "unmatched_observations": 10593,
+  "empty_workbooks": 1059,
+  "above500": 4,
+  "duplicates": 0,
+  "parse_errors": 0,
+  "eligible_stations_at_least_80pct": 60,
+  "representative_cities": 30,
+  "donor_cities": 23,
+  "target_cities": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ],
+  "development_tuning_cities": [
+    "Chandigarh",
+    "Dewas",
+    "Jalandhar",
+    "Ajmer"
+  ],
+  "integrity_seconds": 19.17716407775879,
+  "python": "3.12.15",
+  "register_sha256": "8ccc9f9bf99e4097c995b937358d167ebbc4d67febfd0547b7c7543f4e6206df",
+  "metadata_sha256": "a239d7116e6040f70e127cd454d2c1c22ed043e1162fe07f22409d06cb9ee647"
+}

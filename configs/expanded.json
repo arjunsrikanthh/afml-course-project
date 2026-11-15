@@ -1,0 +1,276 @@
+{
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "architectures": [
+    "gru",
+    "lstm",
+    "tcn",
+    "transformer",
+    "mlp"
+  ],
+  "hidden_size": 32,
+  "batch_size": 256,
+  "num_threads": 2,
+  "device": "mps",
+  "pooled_steps": 600,
+  "pooled_lr": 0.001,
+  "eval_every": 60,
+  "weight_decay": 0.0001,
+  "grad_clip": 1.0,
+  "adaptation_presets": [
+    {
+      "lr": 0.001,
+      "steps": 100
+    },
+    {
+      "lr": 0.0003,
+      "steps": 100
+    }
+  ],
+  "scratch_presets": [
+    {
+      "lr": 0.001,
+      "steps": 100
+    },
+    {
+      "lr": 0.003,
+      "steps": 250
+    }
+  ],
+  "pseudo_budgets": null,
+  "pseudo_query_days": null,
+  "meta_steps": 360,
+  "meta_tasks": 4,
+  "meta_inner_steps": 3,
+  "meta_inner_lr": 0.01,
+  "meta_outer_lr": 0.001,
+  "reptile_outer_lr": 0.1,
+  "meta_query_days": 14,
+  "meta_validation_budget": 90,
+  "purge_days": 9,
+  "dev_cities": [
+    "Chandigarh",
+    "Dewas",
+    "Jalandhar",
+    "Ajmer"
+  ],
+  "ridge_alpha": 10.0,
+  "histgb_iterations": 100,
+  "rf_trees": 128,
+  "ridge_presets": [
+    {
+      "alpha": 1.0
+    },
+    {
+      "alpha": 100.0
+    }
+  ],
+  "histgb_presets": [
+    {
+      "min_samples_leaf": 5,
+      "l2_regularization": 1.0
+    },
+    {
+      "min_samples_leaf": 15,
+      "l2_regularization": 10.0
+    }
+  ],
+  "randomforest_presets": [
+    {
+      "min_samples_leaf": 1,
+      "max_depth": null
+    },
+    {
+      "min_samples_leaf": 3,
+      "max_depth": 6
+    }
+  ],
+  "resume": true,
+  "save_target_states": false,
+  "smoke": false,
+  "source_batch_size": 256,
+  "meta_batch_size": 32,
+  "source_eval_every": 300,
+  "source_min_steps": 600,
+  "source_patience": 4,
+  "meta_eval_every": 150,
+  "meta_min_steps": 300,
+  "meta_patience": 4,
+  "source_grid": [
+    {
+      "hidden": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "steps": 3000
+    },
+    {
+      "hidden": 128,
+      "lr": 0.0003,
+      "weight_decay": 0.0001,
+      "steps": 6000
+    },
+    {
+      "hidden": 192,
+      "lr": 0.001,
+      "weight_decay": 0.001,
+      "steps": 3000
+    },
+    {
+      "hidden": 192,
+      "lr": 0.0003,
+      "weight_decay": 0.001,
+      "steps": 6000
+    }
+  ],
+  "meta_grid": [
+    {
+      "inner_lr": 0.01,
+      "outer_lr": 0.001,
+      "inner_steps": 3,
+      "steps": 1000
+    },
+    {
+      "inner_lr": 0.03,
+      "outer_lr": 0.001,
+      "inner_steps": 3,
+      "steps": 1500
+    },
+    {
+      "inner_lr": 0.01,
+      "outer_lr": 0.0003,
+      "inner_steps": 5,
+      "steps": 1500
+    },
+    {
+      "inner_lr": 0.03,
+      "outer_lr": 0.0003,
+      "inner_steps": 5,
+      "steps": 1500
+    }
+  ],
+  "reptile_outer_scale": 100.0,
+  "deep_scratch_grid": [
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 150,
+      "weight_decay": 0.0001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 150,
+      "weight_decay": 0.0001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 400,
+      "weight_decay": 0.001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 400,
+      "weight_decay": 0.001
+    }
+  ],
+  "deep_finetune_grid": [
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 100,
+      "weight_decay": 0.0001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 100,
+      "weight_decay": 0.0001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 300,
+      "weight_decay": 0.001
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 300,
+      "weight_decay": 0.001
+    }
+  ],
+  "native_sgd_grid": [
+    {
+      "optimizer": "sgd",
+      "lr": 0.01,
+      "steps": 3,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.03,
+      "steps": 10,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.01,
+      "steps": 30,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.03,
+      "steps": 30,
+      "weight_decay": 0.0
+    }
+  ],
+  "meta_adam_grid": [
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 30,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 30,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0003,
+      "steps": 100,
+      "weight_decay": 0.0
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "steps": 100,
+      "weight_decay": 0.0
+    }
+  ],
+  "manual_hidden": 64,
+  "manual_layers": 2,
+  "deep_layers": 2,
+  "diversity_donors": 6,
+  "hpo_development_weight": 0.5,
+  "hpo_seed": 17,
+  "source_hpo_adaptation_steps": 60,
+  "compute_budget_seconds": 14220,
+  "checkpoint_every_seconds": 180,
+  "include_baselines": true,
+  "include_meta": true,
+  "include_diversity": true
+}
