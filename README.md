@@ -12,6 +12,8 @@ The central result is conditional: pretraining helps relative to matching local 
 
 The [explanatory follow-up](followup/) replays the saved GRUs under matched initializations and constrained updates. It also tests nested donor panels with matched label volume.
 
+The [cross-architecture and MAML-objective extension](followup/extension/) tests the learning-rate result on LSTM, MLP, TCN, and Transformer, and isolates the effect of the MAML training objective using the archived donor task stream.
+
 
 ## Run from a fresh clone
 
