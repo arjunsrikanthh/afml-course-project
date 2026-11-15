@@ -24,6 +24,8 @@ CPU works for the two checkpoint-based runs. The original adaptation run used Ap
 
 The independent audit validates the input chronology, target labels and archived fitting journals. It recomputes error metrics and parity from the generated prediction blocks after both runs complete. Receipts from the research run are in [results/independent_audit](results/independent_audit/).
 
+Across adaptation variants, the independent audit allows an absolute difference of 0.00002 AQI in separately computed step-zero forecasts. Forecast keys, observed values, input digests and the use of each trajectory's exact step-zero forecasts as its paired baseline are still checked exactly.
+
 ## Donor panel
 
 This experiment fits fresh pooled and MAML models. Three nested donor schedules fix total city-label dates and training-update counts within each method. The selected city identities and available dates per city vary across donor counts. Each chain uses one paired training seed. The MAML training budget is shorter than in the frozen study. The comparison estimates sensitivity under this design.

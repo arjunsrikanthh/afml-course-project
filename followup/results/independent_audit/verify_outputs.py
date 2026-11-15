@@ -28,6 +28,7 @@ FORECAST_KEY = ["city", "station_id", "date", "issue_date", "horizon", "period"]
 TRUTH = ["last", "y_true"]
 TARGET_PERIODS = ("secondary_2024", "test_2025")
 META_STATES = {(0.0, 0), *product((0.01, 0.03), (1, 3, 10, 30))}
+STEP_ZERO_ATOL_AQI = 2e-5
 
 
 def read_csv(path):
@@ -255,6 +256,7 @@ def audit_adaptation():
     initial = {}
     rows_checked, original_replays = 0, 0
     max_parity = 0.0
+    max_step_zero_difference = 0.0
     raw_metrics = []
     group_keys = ["step", "period", "horizon"]
     identity_keys = ["city", "budget", "seed", "family", "method"]
@@ -279,7 +281,11 @@ def audit_adaptation():
         expected = pd.concat([queries[city], supports[city, budget], panel], ignore_index=True)
         original = states.get_group(0).sort_values(FORECAST_KEY, ignore_index=True).y_pred.to_numpy()
         if identity[:-1] in initial:
-            check(np.array_equal(initial[identity[:-1]], original), (path.name, "step zero differs"))
+            compare_to = initial[identity[:-1]]
+            check(compare_to.shape == original.shape, (path.name, "step zero shape differs"))
+            difference = float(np.max(np.abs(compare_to - original)))
+            check(difference <= STEP_ZERO_ATOL_AQI, (path.name, "step zero differs", difference))
+            max_step_zero_difference = max(max_step_zero_difference, difference)
         else:
             initial[identity[:-1]] = original
         for step, state in states:
@@ -315,6 +321,8 @@ def audit_adaptation():
     return {"complete": complete, "blocks": len(seen), "expected_blocks": len(expected_identities),
             "prediction_rows": rows_checked, "independent_metric_rows": len(metrics),
             "original_reproductions": original_replays, "max_original_difference_aqi": max_parity,
+            "max_cross_variant_step_zero_difference_aqi": max_step_zero_difference,
+            "cross_variant_step_zero_tolerance_aqi": STEP_ZERO_ATOL_AQI,
             "blocks_per_city": dict(appearances), "raw_recomputed_every_receipt": True}
 
 
