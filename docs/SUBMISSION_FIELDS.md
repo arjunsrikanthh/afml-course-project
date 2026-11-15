@@ -25,5 +25,5 @@
 | Team member | SRN | Project work |
 |---|---|---|
 | Ankit Umadi | PES1UG24AM422 | MAML, FOMAML and Reptile implementation, meta-learning experiments, and objective and task controls. |
-| Arjun Srikanth | PES1UG24AM920 | Research, CPCB acquisition and preparation, other architectures and baselines, evaluation, verification, and reporting. |
+| Arjun Srikanth | PES1UG24AM920 | Literature review and experimental design; CPCB data acquisition and preparation; LSTM, MLP, TCN and Transformer experiments; Ridge regression, Random Forest and histogram gradient boosting comparisons; persistence, seven-day mean and previous-week baselines; evaluation and verification. |
 | Jayanth K | PES1UG24AM123 | GRU implementation, pooled and local GRU training, fine-tuning, and GRU adaptation diagnostics. |
