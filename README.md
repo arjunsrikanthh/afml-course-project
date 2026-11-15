@@ -15,9 +15,9 @@ A reproducible undergraduate study of daily overall AQI from India's Central Pol
 
 | Team member | Contribution |
 | --- | --- |
-| Ankit Umadi | Literature review, research design, CPCB acquisition, data preparation, and cohort construction |
-| Arjun Srikanth | Forecast pipeline, baseline and neural models, training, benchmarking, and primary evaluation |
-| Jayanth K | Follow-up experiments, independent verification, analysis, reproducibility, and reporting |
+| Ankit Umadi | MAML, FOMAML and Reptile implementation, meta-learning experiments, and objective and task controls. |
+| Arjun Srikanth | Research, CPCB acquisition and preparation, other architectures and baselines, evaluation, verification, and reporting. |
+| Jayanth K | GRU implementation, pooled and local GRU training, fine-tuning, and GRU adaptation diagnostics. |
 
 The [public frozen release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) preserves the original source bytes, forecasts, fitting journals, saved weights, and independent audits.
 

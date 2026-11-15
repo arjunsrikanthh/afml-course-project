@@ -206,9 +206,6 @@ The diagnostic controls explain how the fitted models changed on the observed ex
 Pooled cross-city forecasts show their clearest gains over persistence at two and three days. The original joint MAE/RMSE criterion holds in 0/99 cells. Across five architectures, the original fine-tuning schedule fits the local training sample more closely and worsens 2025 forecasts. A tenfold smaller learning rate reduces that penalty in every architecture. On the archived MAML task stream, training for error after local updates explains most of the weaker starting forecasts. The paired difference is small after five shared updates and varies by year.
 
 \balance
-\section*{Author Contributions}
-Ankit Umadi conducted background research and collected and prepared the data. Arjun Srikanth implemented and trained the models and ran the benchmarks. Jayanth K carried out the follow-up experiments, verification and reporting.
-
 \begin{thebibliography}{11}
 \bibitem{cpcb_report} Central Pollution Control Board, \emph{National Air Quality Index}, Control of Urban Pollution Series CUPS/82/2014-15, 2014. [Online]. Available: \url{https://airquality.cpcb.gov.in/ccr_docs/FINAL-REPORT_AQI_.pdf}
 \bibitem{cpcb_data} Central Pollution Control Board, ``AQI repository,'' Central Control Room for Air Quality Management. Source snapshot: Nov. 14, 2026. [Online]. Available: \url{https://airquality.cpcb.gov.in/ccr/#/repository/aqi}

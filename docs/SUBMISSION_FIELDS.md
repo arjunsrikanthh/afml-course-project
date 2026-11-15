@@ -24,6 +24,6 @@
 
 | Team member | SRN | Project work |
 |---|---|---|
-| Ankit Umadi | PES1UG24AM422 | Literature review, research design, CPCB acquisition, data preparation, and cohort construction. |
-| Arjun Srikanth | PES1UG24AM920 | Forecast pipeline, baseline and neural model implementation, training, benchmarking, and primary evaluation. |
-| Jayanth K | PES1UG24AM123 | Follow-up experiments, independent verification, analysis of results, and reproducibility and reporting. |
+| Ankit Umadi | PES1UG24AM422 | MAML, FOMAML and Reptile implementation, meta-learning experiments, and objective and task controls. |
+| Arjun Srikanth | PES1UG24AM920 | Research, CPCB acquisition and preparation, other architectures and baselines, evaluation, verification, and reporting. |
+| Jayanth K | PES1UG24AM123 | GRU implementation, pooled and local GRU training, fine-tuning, and GRU adaptation diagnostics. |
