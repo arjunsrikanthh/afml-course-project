@@ -10,6 +10,9 @@ The compact reference produced 1,876,662 forecasts across 23 methods on Mac CPU.
 
 The central result is conditional: pretraining helps relative to matching local neural models, while target fine-tuning can damage a strong pooled forecast. Meta-learning has no universal advantage over ordinary matched transfer. The strict original fine-tuning success criterion held in 0/99 evaluated method/budget/horizon cells; matched meta-learning did not improve on ordinary matched GRU fine-tuning in the 27 main comparison cells. See the synthesis for exact definitions, estimates, uncertainty and failures.
 
+The [explanatory follow-up](followup/) replays the saved GRUs under matched initializations and constrained updates. It also tests nested donor panels with matched label volume.
+
+
 ## Run from a fresh clone
 
 Use Python 3.12 (the original run's Python version) and a virtual environment. CPU works for smoke checks, audits and synthesis. Full expanded retraining takes hours and benefits from CUDA or Apple MPS.

@@ -1,0 +1,98 @@
+{
+  "status": "POST_HOC explanatory investigation; no selection or causal identification",
+  "created_utc": "2026-11-15T07:52:53.369299+00:00",
+  "seasonal_work": "excluded",
+  "investigation_script_sha256": "97dddf65ffd7adc4300913be0105d8e2cc84fd9f21b402e5d696a010ced8c385",
+  "frozen_engine_sha256": {
+    "research_analysis.py": "1b2e97dccfc53e75b79b55543bf2903ad518f52ea30d2a71f8e0cb5c6160e440",
+    "verify_final_study.py": "a5de66db665d3d9e055f18e18a815be76fa793698021edfca2d50ffeeb0ef1ef",
+    "load_research_inputs.py": "60908abe8f214810f9b02a8c8aa8b2ecbaf3e525dff7a848b5cdf6302dd2cd83",
+    "verify_research_study.py": "b3088cf52db953ead44dbaff24b896bd56ff952b56917f884afda017ec912fed",
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final_data_pipeline.py": "47fc684b60e2b5216684818909e71c34bf32f7e2c067a0438247cd378e832050",
+    "final_evaluation.py": "aba59e3335a33af2fc6b261e11597153af1f2764e17a89a5aefc104df1bf54d6",
+    "final_model_engine.py": "7b00b1ff622bf06ba7e95b6af5af7fa0d2acdebd2c662314fdd5716be7a8e0a5",
+    "research_model_engine.py": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969"
+  },
+  "source_states_sha256": {
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/gru_s17.pt": "faf9f0007625ff40894b99800a2eddacd782bc2c98547eb37e88e237a9e8c941",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/gru_s43.pt": "2f8a4a0c1d5108411e5e4476e38fd02ff29c95a5b031fa38e3e0212d4962f008",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/gru_s71.pt": "e2018942d82431ecb441ddd4c1945fcb8c1822fca6c7494927bce8b63f7a22e4",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s17.pt": "2fe050b55d81e7891b1762ba7f2139c53b1a7cf96274a61eacd835b85219b473",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s43.pt": "0caa341ecec3065315a27c7ba4109f02a28920979a3bf1bdcd8c40a03a55bf11",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s71.pt": "85f5b794b77be564aaa6c6ed526af30e07f63758ba00fc1b2455f7836c8f5244"
+  },
+  "input_manifest_sha256": "7ac58cd179c36b89ded49eb32fc63ce20d3c42a85c67effdb78f4e53ab0f189f",
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "families": {
+    "deep_gru": [
+      "gru",
+      "deep_gru_finetune",
+      "deep_gru_pooled_zero",
+      [
+        0,
+        1,
+        3,
+        10,
+        30,
+        100
+      ]
+    ],
+    "matched_gru": [
+      "manual_gru",
+      "matched_gru_finetune",
+      "matched_gru_pooled_zero",
+      [
+        0,
+        1,
+        2,
+        3,
+        10,
+        30
+      ]
+    ]
+  },
+  "variants": {
+    "original": {
+      "lr_factor": 1.0,
+      "head_only": false,
+      "anchor": 0.0
+    },
+    "smaller_lr": {
+      "lr_factor": 0.1,
+      "head_only": false,
+      "anchor": 0.0
+    },
+    "head_only": {
+      "lr_factor": 1.0,
+      "head_only": true,
+      "anchor": 0.0
+    },
+    "anchor_0p01": {
+      "lr_factor": 1.0,
+      "head_only": false,
+      "anchor": 0.01
+    },
+    "anchor_0p1": {
+      "lr_factor": 1.0,
+      "head_only": false,
+      "anchor": 0.1
+    }
+  },
+  "anchor_definition": "lambda * sum over ALL trainable parameters of squared distance to saved initial weights; residual MSE units; original weight decay also retained",
+  "training": "Exact frozen feature array, residual MSE, CitySampler(seed+991), original batch sizes/optimizer/gradient clipping; all heads jointly trained over three horizons; no target selection, stopping, retuning or source retraining",
+  "evaluation": "same six target cities and exact common date/horizon masks secondary2024/main2025; support separate; forecasts same residual+last transform; no clipping",
+  "parity": "Before main controls, original pooled and adapted baseline reproduced for first target B90 seed17 both families; every case original endpoint/step0 checked against original saved blocks; max prediction absolute tolerance .002 AQI",
+  "inference": "date losses paired; seed, step, horizon and budget correlated repetitions, never independent samples; root coordinator performs grouped/date-block inference",
+  "seen_donor_diagnostic": "Fixed retention panel: each of23 donors, six complete2023 common label dates chosen by ascending SHA256(city|date); all3horizons. Seen-source training retention, not held-out donor transfer or generalization. Does not tune controls.",
+  "resume": "Atomic per city/budget/seed/family/variant compressed blocks and JSON receipts; any interrupted trajectory reruns from source; original outputs immutable"
+}

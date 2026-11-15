@@ -1,0 +1,71 @@
+{
+  "chain_training_seeds": {
+    "a": 17,
+    "b": 43,
+    "c": 71
+  },
+  "donor_counts": [
+    6,
+    12,
+    23
+  ],
+  "interpretation": "Equal city-date volume and within-method update counts. City identities and per-city/episode temporal density vary with count. A fixed seed is paired with each independent panel chain; variability cannot separate composition from initialization. MAML uses 300 outer updates / fixed 90-label training tasks for bounded compute, versus 1350 / mixed 30/90/180-label tasks in original refits. No convergence claim.",
+  "maml": {
+    "batch": 32,
+    "inner_lr": 0.03,
+    "inner_steps": 5,
+    "outer_lr": 0.0003,
+    "purge_intervening_days": 9,
+    "query_labels": 14,
+    "steps": 300,
+    "support_labels": 90,
+    "task_count": 4
+  },
+  "source_city_label_dates_by_year": {
+    "2020": 552,
+    "2021": 828,
+    "2022": 1104,
+    "2023": 828
+  },
+  "source_model": {
+    "architecture": "manual_gru",
+    "hidden": 64,
+    "layers": 2
+  },
+  "source_row_selection": "SHA256-ranked nested donor prefixes per chain and SHA256-ranked city-date prefixes with exact per-city yearly quotas; every selected label has all three horizons",
+  "source_sha256": {
+    "experiment": "3db352a26a5fda2931273d842deb51ec44efa6ece55526784872656434b54d0f",
+    "final_model_engine.py": "7b00b1ff622bf06ba7e95b6af5af7fa0d2acdebd2c662314fdd5716be7a8e0a5",
+    "input_manifest": "7ac58cd179c36b89ded49eb32fc63ce20d3c42a85c67effdb78f4e53ab0f189f",
+    "load_research_inputs.py": "60908abe8f214810f9b02a8c8aa8b2ecbaf3e525dff7a848b5cdf6302dd2cd83",
+    "research_model_engine.py": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969"
+  },
+  "status": "Post hoc on the already inspected original 2024 and 2025 results",
+  "supervised": {
+    "batch": 256,
+    "lr": 0.001,
+    "optimizer": "adam",
+    "steps": 1200,
+    "weight_decay": 0.0001
+  },
+  "target_budgets": [
+    30,
+    90,
+    180
+  ],
+  "target_evaluation": "Released chronological support selector; original common horizon rows in 2024 and 2025; every condition scored; no target optimization or arm selection",
+  "target_schedules": {
+    "sgd01x3": [
+      0.01,
+      3
+    ],
+    "sgd03x10": [
+      0.03,
+      10
+    ],
+    "zero": [
+      0,
+      0
+    ]
+  }
+}

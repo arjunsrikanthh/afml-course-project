@@ -1,0 +1,68 @@
+{
+  "scope": "Inputs and original artifacts only; no new run completion claim",
+  "passed": true,
+  "checks": [
+    {
+      "name": "original_input_manifest",
+      "passed": true,
+      "evidence": {
+        "files": 17,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "target_donor_exclusion",
+      "passed": true,
+      "evidence": {
+        "donors": 23,
+        "targets": [
+          "Ahmedabad",
+          "Amaravati",
+          "Guwahati",
+          "Ludhiana",
+          "Pithampur",
+          "Udaipur"
+        ],
+        "nearest_donor_to_target_km": 42.55321321776907
+      }
+    },
+    {
+      "name": "independent_window_chronology",
+      "passed": true,
+      "evidence": {
+        "target_windows": 29688
+      }
+    },
+    {
+      "name": "independent_observed_truth_and_all_lags",
+      "passed": true,
+      "evidence": {
+        "y": 0,
+        "x0": 0,
+        "x1": 0,
+        "x2": 0,
+        "x3": 0,
+        "x4": 0,
+        "x5": 0,
+        "x6": 0
+      }
+    },
+    {
+      "name": "independent_support_vs_original_records",
+      "passed": true,
+      "evidence": {
+        "records": 270,
+        "failures": 0,
+        "last_fitting_label": "2023-12-31"
+      }
+    },
+    {
+      "name": "original_artifacts_unchanged_since_independent_snapshot",
+      "passed": true,
+      "evidence": {
+        "paths": 31,
+        "changed": []
+      }
+    }
+  ]
+}
