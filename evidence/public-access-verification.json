@@ -1,0 +1,47 @@
+{
+  "anonymous": true,
+  "repository": "https://github.com/arjunsrikanthh/afml-course-project",
+  "private": false,
+  "default_branch": "main",
+  "release": "https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0",
+  "draft": false,
+  "assets": [
+    {
+      "name": "AFML_Complete_Executed_Notebooks.zip",
+      "size": 224820338,
+      "digest": "sha256:1fe7c388984c6dfdcc5e505ff741529fb6a0b6b53b0c5a1d11e515bfc056cc05",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_Complete_Executed_Notebooks.zip"
+    },
+    {
+      "name": "AFML_Final_Presentation.pdf",
+      "size": 2101824,
+      "digest": "sha256:c76facd03b6365b45e0e0448e5141651229af1bf68a9c0558a30da2e6303fe61",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_Final_Presentation.pdf"
+    },
+    {
+      "name": "AFML_Final_Presentation.pptx",
+      "size": 1259778,
+      "digest": "sha256:bab547e6a3744feee655b68838c7e0abc62015a6830aecc4c25d3d3ded75e8ae",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_Final_Presentation.pptx"
+    },
+    {
+      "name": "AFML_IEEE_LaTeX_Source.zip",
+      "size": 129502,
+      "digest": "sha256:c7ad27ce35e0a77109d33731bcc2d4fd4b3b4ee19e3ca4e829dfb84ca4ef81ae",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_IEEE_LaTeX_Source.zip"
+    },
+    {
+      "name": "AFML_IEEE_Paper.pdf",
+      "size": 112431,
+      "digest": "sha256:49c75015780630685b4d59cbd72f925a384c6d4f7c21569e214a29458fb4ac05",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_IEEE_Paper.pdf",
+      "download_sha256": "49c75015780630685b4d59cbd72f925a384c6d4f7c21569e214a29458fb4ac05"
+    },
+    {
+      "name": "CPCB_AQI_Source_Release_v1.zip",
+      "size": 26551652,
+      "digest": "sha256:014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+      "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/CPCB_AQI_Source_Release_v1.zip"
+    }
+  ]
+}

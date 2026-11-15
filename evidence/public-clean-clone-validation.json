@@ -1,0 +1,116 @@
+{
+  "verdict": "PASS",
+  "completed_utc": "2026-11-15T07:06:44.087764+00:00",
+  "tested_commit": "6b34ee845b44be08b39e386d4d46cdf172f3b432",
+  "python": "3.12.15",
+  "environment": "Separate newly created virtual environment; pip install -r requirements.txt succeeded; kernel points to that environment.",
+  "anonymous_clone": {
+    "credential_helper_disabled": true,
+    "http_extra_header_cleared": true,
+    "terminal_prompt_disabled": true,
+    "default_branch": "main"
+  },
+  "anonymous_download": {
+    "url": "https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/AFML_Complete_Executed_Notebooks.zip",
+    "bytes": 224820338,
+    "sha256": "1fe7c388984c6dfdcc5e505ff741529fb6a0b6b53b0c5a1d11e515bfc056cc05",
+    "zip_crc_and_member_safety_checks_passed": true,
+    "credentials_used": false
+  },
+  "commands_passed": [
+    "python reproduce.py check-inputs",
+    "python reproduce.py smoke",
+    "python reproduce.py fetch",
+    "python reproduce.py prepare",
+    "python reproduce.py audit",
+    "python reproduce.py synthesis",
+    "python paper/build_figures.py --results-root results"
+  ],
+  "inputs": {
+    "manifest_files": 17,
+    "source_workbooks_reparsed": 3820,
+    "source_scientific_tables_exactly_matched": 5,
+    "observations": 769129
+  },
+  "synthetic_smoke": {
+    "reference": {
+      "artificial_data_only": true,
+      "fit_records": 120,
+      "meta_algorithms_update": true,
+      "methods": 23,
+      "prediction_rows": 2484,
+      "purge_days_minimum": 9,
+      "resume_equal": true,
+      "status": "passed",
+      "target_leakage_guard": true
+    },
+    "expanded": {
+      "fit_rows": 77,
+      "gradient": {
+        "body_gradient_l2": 0.02163638258349686,
+        "body_parameter_absolute_change": 0.8147020787000656,
+        "create_graph_fomaml": false,
+        "create_graph_full_maml": true,
+        "cudnn_used_for_meta": false,
+        "data": "artificial tensors only",
+        "device": "cpu",
+        "forward_query_loss_fomaml": 0.044589292258024216,
+        "forward_query_loss_maml": 0.044589292258024216,
+        "full_gradient_l2": 0.08857196610674893,
+        "full_maml_vs_fomaml_gradient_l2": 0.12372718781716609,
+        "manual_native_gru_max_abs_difference": 7.450580596923828e-08,
+        "passed": true
+      },
+      "methods": 33,
+      "passed": true,
+      "prediction_rows": 990,
+      "resume_identical": true
+    }
+  },
+  "independent_saved_run_audits": {
+    "reference": {
+      "verdict": "PASS",
+      "checks": 9,
+      "critical_failures": 0
+    },
+    "expanded": {
+      "verdict": "PASS",
+      "checks": 12,
+      "critical_failures": 0
+    }
+  },
+  "synthesis": {
+    "studies": [
+      {
+        "study": "compact",
+        "methods": 23,
+        "training_device": "cpu",
+        "hardware": null,
+        "forecasts": 1876662,
+        "fit_records": 1644,
+        "independent_checks_passed": 9
+      },
+      {
+        "study": "expanded",
+        "methods": 33,
+        "training_device": "mps",
+        "hardware": null,
+        "forecasts": 2692602,
+        "fit_records": 3003,
+        "independent_checks_passed": 12
+      }
+    ],
+    "source_release_sha256": "014fa6ab88854a9649e4d903483d516be5b4b5ecf482ecd497e291cdf1a89811",
+    "shared_examples_and_evaluation_contexts_verified": true,
+    "independent_artifact_hash_checks_passed": true,
+    "saved_macro_mae_rmse_and_bias_recomputed": true,
+    "main_test": "2025",
+    "secondary_test": "2024"
+  },
+  "paper_figure_regeneration": {
+    "numerical_evidence_equal": true,
+    "latex_results_table_byte_equal": true
+  },
+  "full_model_training_repeated_during_packaging": false,
+  "scientific_modules": "Byte-identical to the original frozen executed study modules."
+}
