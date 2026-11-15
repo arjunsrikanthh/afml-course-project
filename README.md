@@ -4,15 +4,40 @@ A reproducible undergraduate study of daily overall AQI from India's Central Pol
 
 **Team Toxic (23)** · Arjun Srikanth (PES1UG24AM920), Ankit Umadi (PES1UG24AM422), Jayanth K (PES1UG24AM123).
 
-Start with the [executed research synthesis](notebooks/executed/AFML_04_Final_Research_Synthesis_Executed.ipynb). The [IEEE-format paper](paper/) and [presentation](slides/) explain the study. The [public frozen release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) preserves the original source bytes, forecasts, fitting journals, saved weights and independent audits.
+## Course submission
+
+| Deliverable | Link |
+| --- | --- |
+| IEEE paper | [PDF](paper/AFML_IEEE_Paper.pdf) · [Editable LaTeX and figures](paper/AFML_IEEE_LaTeX_Source.zip) |
+| Presentation | [Editable PowerPoint](slides/AFML_Final_Presentation.pptx) · [PDF preview](slides/AFML_Final_Presentation.pdf) |
+| Dataset | [Official CPCB repository](https://airquality.cpcb.gov.in/ccr/#/repository/aqi) · [Data provenance](docs/DATA_SOURCES.md) |
+| Results and code | [Executed benchmark synthesis](notebooks/executed/AFML_04_Final_Research_Synthesis_Executed.ipynb) · [Follow-up reproduction and results](followup/extension/) |
+
+| Team member | Contribution |
+| --- | --- |
+| Ankit Umadi | Literature review, research design, CPCB acquisition, data preparation, and cohort construction |
+| Arjun Srikanth | Forecast pipeline, baseline and neural models, training, benchmarking, and primary evaluation |
+| Jayanth K | Follow-up experiments, independent verification, analysis, reproducibility, and reporting |
+
+The [public frozen release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) preserves the original source bytes, forecasts, fitting journals, saved weights, and independent audits.
 
 The compact reference produced 1,876,662 forecasts across 23 methods on Mac CPU. The expanded comparison produced 2,692,602 forecasts across 33 methods on Apple GPU (MPS), including full second-order MAML, FOMAML and Reptile. Notebook 01 ran on Kaggle; the executed model and synthesis notebooks in this repository are the completed local runs. A private Kaggle queue is not required to reproduce them.
 
-The central result is conditional: pretraining helps relative to matching local neural models, while target fine-tuning can damage a strong pooled forecast. Meta-learning has no universal advantage over ordinary matched transfer. The strict original fine-tuning success criterion held in 0/99 evaluated method/budget/horizon cells; matched meta-learning did not improve on ordinary matched GRU fine-tuning in the 27 main comparison cells. See the synthesis for exact definitions, estimates, uncertainty and failures.
+Pooled models lowered MAE relative to their matching local neural models in all 99 original comparisons. The strict fine-tuning criterion held in 0 of 99 cells. Ordinary matched GRU fine-tuning had lower MAE than the three meta-learning methods in the 27 primary 2025 comparisons. The synthesis gives the definitions, effect sizes, and uncertainty.
 
 The [explanatory follow-up](followup/) replays the saved GRUs under matched initializations and constrained updates. It also tests nested donor panels with matched label volume.
 
-The [cross-architecture and MAML-objective extension](followup/extension/) tests the learning-rate result on LSTM, MLP, TCN, and Transformer, and isolates the effect of the MAML training objective using the archived donor task stream.
+The [cross-architecture and MAML-objective extension](followup/extension/) compares the original 100 local updates with a tenfold lower learning rate. Positive values show an increase in 2025 MAE relative to the same pooled model.
+
+| Architecture | Original updates | One-tenth learning rate |
+| --- | ---: | ---: |
+| GRU | +10.96 | +0.61 |
+| LSTM | +4.38 | +0.08 |
+| MLP | +10.45 | +2.09 |
+| TCN | +15.73 | +1.01 |
+| Transformer | +13.12 | +1.38 |
+
+With the archived donor task stream held fixed, changing the MAML objective to reward immediate accuracy reduced its zero-update 2025 MAE from 28.27 to 26.94 AQI points. These follow-up controls use the same evaluation years.
 
 
 ## Run from a fresh clone

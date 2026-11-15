@@ -1,0 +1,11 @@
+\subsection{Learning-rate control across architectures}
+We repeated the tenfold learning-rate reduction for the other four architectures at their released 100-update Adam schedule. Each pair shares a starting checkpoint, sampled training batches and evaluation windows. The only intervention is the rate ($3\times10^{-4}$ versus $3\times10^{-5}$). We examine every combination of six cities, three fitting budgets, three horizons and three seeds.
+
+\begin{table}[t]
+\caption{2025 macro MAE and its change after 100 target updates. Changes are relative to each row's pooled MAE and expressed in AQI points. Positive values mean higher error.}
+\label{tab:architecture-rate}
+\centering\small
+\input{extension_architecture_rows.tex}
+\end{table}
+
+The original updates lower target fitting MAE across all five architectures and raise 2025 MAE by 4.38--15.73 points. At one-tenth the rate, the increases fall to 0.08--2.09 points (Table~\ref{tab:architecture-rate}). For each added architecture, the original squared correction term $d^2$ dominates the favorable mean cross term $2ed$. Reducing the rate shrinks $d^2$ across all four. The four 2024 MAE penalties also fall, from 3.40--13.34 to $-0.04$--1.45 points. These interventions identify a source of error for the released schedules. A fresh evaluation is needed to assess the reduced rate on unseen dates.

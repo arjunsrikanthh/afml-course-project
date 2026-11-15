@@ -1,0 +1,5 @@
+contrast,period,direction_term,size_term,mse_change
+deep_gru: original endpoint minus zero,secondary_2024,-157.31414130137227,1037.6775194852712,880.3633781838989
+deep_gru: original endpoint minus zero,test_2025,-131.96786689773526,1224.674658626852,1092.7067917291167
+matched_gru: original endpoint minus zero,secondary_2024,-17.823939932122443,5.108925232901983,-12.71501469922046
+matched_gru: original endpoint minus zero,test_2025,-5.558141551321733,5.403458881952661,-0.15468266936907238
