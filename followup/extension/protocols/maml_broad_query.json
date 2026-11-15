@@ -1,0 +1,10 @@
+{
+  "arm": "zero_broad_query_objective",
+  "estimand": "Change only the zero-step objective's query sampling. Instead of sampling 32 unique examples from the chosen task's 14 query-label dates, choose 32 unique examples uniformly from all eligible source-refit rows of that task's city. Keep the exact archived task city stream, architecture, initialization, optimizer, 1350 outer updates, 4 query batches/update, 32 rows/batch, loss, and clipping. Donor chronology respects the 2023 cutoff.",
+  "evaluation_and_stages": "identical to paired protocol",
+  "meaning": "Isolates procedural within-city query sampling, including the change from localized query blocks to all eligible dates. A difference cannot isolate chronology from temporal concentration or date weights.",
+  "paired_protocol_sha256": "20f4c604fdf0f392228c74782361f5b9870f32d092af5c079167c44299416309",
+  "rng_seed_offset": 17137,
+  "script_sha256": "0c44a6e2d489d373c8348bdbbc91d530a665fccc04b9c9e8f7510c5f84fa6300",
+  "stage": "post hoc on previously inspected target years; no target selection"
+}

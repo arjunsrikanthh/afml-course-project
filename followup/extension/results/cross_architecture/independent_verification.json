@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "complete": true,
+  "blocks": 432,
+  "expected_blocks": 432,
+  "forecast_rows_verified": 5767200,
+  "independent_metric_rows": 31104,
+  "archived_replay_blocks_verified": 432,
+  "max_archived_prediction_difference_aqi": 3.5762786865234375e-05,
+  "max_cross_variant_step_zero_difference_aqi": 0.0,
+  "cross_variant_step_zero_tolerance_aqi": 2e-05,
+  "protocol_sha256": "c1fc1a4566ce3067468b42b31a28be1af17dfc2a1d5910c8a696b62e81055de5"
+}

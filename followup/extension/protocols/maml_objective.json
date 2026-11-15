@@ -1,0 +1,70 @@
+{
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "contrast": "Same initial weights, four task-draws/update, donor data, seed, purged episode labels, sampled 32 query examples, query residual MSE, Adam outer optimization, clipping and update count. Only the training objective changes: evaluate that query MSE at zero or after five support SGD steps.",
+  "device": "CPU for both arms, one thread per concurrent seed",
+  "donor_batches": "Reconstruct archived donor episode and minibatch RNG streams. Validate every label-set hash and archived RNG state. Evaluate the untouched query objective after either zero or five support steps.",
+  "evaluation": "All frozen original 2024/2025 target masks and horizon labels. Fit target SGD on the frozen local support, same batches and schedule between objectives, no target selection. Compare seed/city/budget/horizon means at zero, .01x3, .03x5 and .03x10. Report all schedules.",
+  "evaluation_donor_measure": "Seven common 2023 label dates per donor, selected by the released checkpoint investigation hash rule; descriptive training-retention measure only, not held-out donor evidence.",
+  "evaluation_schedules": [
+    [
+      0.0,
+      0
+    ],
+    [
+      0.01,
+      3
+    ],
+    [
+      0.03,
+      5
+    ],
+    [
+      0.03,
+      10
+    ]
+  ],
+  "hypothesis": "An objective penalizing forecasts after local updates can yield a worse zero-step initialization than directly minimizing zero-step query errors.",
+  "interpretation": "Isolates the after-update objective within the original episodic data distribution. Original pooled training uses a different sampling and optimization recipe; comparisons with it do not isolate the objective.",
+  "methods": [
+    "zero_query_objective",
+    "after_five_query_objective",
+    "released_pooled",
+    "released_maml"
+  ],
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "sha256": {
+    "delivery/submission_20261115/repository/data/frozen/INPUT_MANIFEST.json": "7ac58cd179c36b89ded49eb32fc63ce20d3c42a85c67effdb78f4e53ab0f189f",
+    "delivery/submission_20261115/repository/scripts/final_model_engine.py": "7b00b1ff622bf06ba7e95b6af5af7fa0d2acdebd2c662314fdd5716be7a8e0a5",
+    "delivery/submission_20261115/repository/scripts/load_research_inputs.py": "60908abe8f214810f9b02a8c8aa8b2ecbaf3e525dff7a848b5cdf6302dd2cd83",
+    "delivery/submission_20261115/repository/scripts/research_model_engine.py": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s17.pt": "8d4a33658417428ebf3a1d138729a20c6bce2dc32ce4b9c7862b6d347048f037",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s43.pt": "24555a9eb027565ba4215f77a35eabb85b24dd65d054c42f9fc0a463173321e2",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s71.pt": "d5e9a0c032b3af0885aa27532eb9de4f6a31f1b609d7a01f8157ae8b614c1338",
+    "results/final_study_20261114/mac_research/afml_research/models/effective_config.json": "9bc9b979915c26247469ef2d2b0f73c583d96fcae6521a7549c4e19fcb9995df",
+    "results/final_study_20261114/mac_research/afml_research/models/meta_episodes/refit_meta_maml_s17.csv.gz": "0477a76efdd8f48253b8bde39ed9304474819fbc8155bacfdd7e63d05b24edab",
+    "results/final_study_20261114/mac_research/afml_research/models/meta_episodes/refit_meta_maml_s43.csv.gz": "5029b869315eb645a9e75f0d0188ffa59eb846141f9f2b6c18e118dff8cb6e1b",
+    "results/final_study_20261114/mac_research/afml_research/models/meta_episodes/refit_meta_maml_s71.csv.gz": "28139784f7af5c5d8813fe7c83c0ce72022bb7bd751faec58d905e14a2a53bbe",
+    "results/final_study_20261114/mac_research/afml_research/models/source_selections.json": "a13f19210688e082b2cae4c2faa9cb2a249f5fc6ee7c10eeea2f5189496b8d6e",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/maml_s17.pt": "14a828eeaf6139a3d959863b4a3d09ebf84be7257a7f647072fc42f177ba522c",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/maml_s43.pt": "53a58ec488c131ed109dffb6ed21bb16c974664a63a3a253ef1fe8143c72ee93",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/maml_s71.pt": "5065208e391f3bfe6347cb9dab13156f50148798e2ff2715b7a05608dd3d28b9",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s17.pt": "2fe050b55d81e7891b1762ba7f2139c53b1a7cf96274a61eacd835b85219b473",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s43.pt": "0caa341ecec3065315a27c7ba4109f02a28920979a3bf1bdcd8c40a03a55bf11",
+    "results/final_study_20261114/mac_research/afml_research/models/source_states/manual_gru_s71.pt": "85f5b794b77be564aaa6c6ed526af30e07f63758ba00fc1b2455f7836c8f5244",
+    "scripts/investigation_20261115/maml_objective_controls.py": "16adafcf729e81fc56cfb5981a1781d76fb1668a2c16a43dbe6772898a81d08a"
+  },
+  "stage": "post hoc on previously inspected target years; no target selection",
+  "stages": [
+    300,
+    1350
+  ],
+  "support_sgd": "Rate .03, five steps, 32 sampled rows/step, grad norm clip 1."
+}

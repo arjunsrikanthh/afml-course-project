@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "raw_forecast_rows_verified": 1631880,
+  "primary_schedules_verified_from_forecasts": [
+    0,
+    5
+  ],
+  "other_schedules_reported_from_run_metrics": [
+    3,
+    10
+  ],
+  "reconstructed_archived_episode_records": 16200,
+  "max_cpu_vs_mps_reference_forecast_difference_aqi": 2.5331974029541016e-05
+}

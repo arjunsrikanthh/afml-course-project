@@ -2181,6 +2181,6 @@
       "uncertainty_scope": "Temporal uncertainty conditional on these selected cities; cities not resampled"
     }
   ],
-  "source_metrics": "results/expanded/macro_metrics.csv",
-  "comparisons": "results/expanded/paired_comparisons.csv"
+  "source_metrics": "figure_data/benchmark/expanded/macro_metrics.csv",
+  "comparisons": "figure_data/benchmark/expanded/paired_comparisons.csv"
 }

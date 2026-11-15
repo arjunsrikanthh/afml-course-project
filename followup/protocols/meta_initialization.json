@@ -1,0 +1,102 @@
+{
+  "budgets": [
+    30,
+    90,
+    180
+  ],
+  "cohort": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ],
+  "design": "POST HOC explanatory analysis after original 2025 outcomes were inspected; no confirmatory status",
+  "diagnostics": [
+    "support residual MSE, whole support",
+    "parameter L2 and relative L2 drift, body/head",
+    "per-date future absolute/squared error",
+    "macro city MAE/RMSE by seed/horizon/period/budget",
+    "paired adaptation-minus-zero and meta-minus-pooled at identical schedule"
+  ],
+  "donor_retention": "Fixed seven common2023 label dates per each23donor cities, ranked SHA256(city|date); all3horizons; descriptive retention on source-refit training data, not donor generalization",
+  "estimand": "Effects of identical target SGD conditional on four saved donor-trained initializations; not general algorithm superiority",
+  "frozen_at_utc": "2026-11-15T07:53:41.859511+00:00",
+  "initializations": [
+    "pooled",
+    "maml",
+    "fomaml",
+    "reptile"
+  ],
+  "interpretation": "No target-based winner, step selection or tuning; observed support/query divergence and drift are descriptive, not causal proof of source mismatch",
+  "original_arm_replay": "pooled .01x3; MAML/FOMAML/Reptile .03x10; also pooled zero; original CPU/MPS prediction tolerance0.01AQI max abs",
+  "original_grid_endpoints": [
+    {
+      "lr": 0.01,
+      "steps": 3
+    },
+    {
+      "lr": 0.03,
+      "steps": 10
+    },
+    {
+      "lr": 0.01,
+      "steps": 30
+    },
+    {
+      "lr": 0.03,
+      "steps": 30
+    }
+  ],
+  "queries": "Exact original common horizon1/2/3 examples in secondary2024 and test2025; no filtering by error",
+  "runtime": {
+    "device": "cpu",
+    "torch_interop_threads": 1,
+    "torch_threads": 2
+  },
+  "seeds": [
+    17,
+    43,
+    71
+  ],
+  "shared_sgd": {
+    "batch_size": 32,
+    "grad_clip": 1.0,
+    "lrs": [
+      0.01,
+      0.03
+    ],
+    "sampler": "CitySampler(seed+991), same sample stream for all initializations and rates",
+    "trajectory_steps": [
+      0,
+      1,
+      3,
+      10,
+      30
+    ],
+    "weight_decay": 0.0
+  },
+  "source_sha256": {
+    "delivery/submission_20261115/repository/data/frozen/INPUT_MANIFEST.json": "7ac58cd179c36b89ded49eb32fc63ce20d3c42a85c67effdb78f4e53ab0f189f",
+    "delivery/submission_20261115/repository/scripts/final_model_engine.py": "7b00b1ff622bf06ba7e95b6af5af7fa0d2acdebd2c662314fdd5716be7a8e0a5",
+    "delivery/submission_20261115/repository/scripts/load_research_inputs.py": "60908abe8f214810f9b02a8c8aa8b2ecbaf3e525dff7a848b5cdf6302dd2cd83",
+    "delivery/submission_20261115/repository/scripts/research_model_engine.py": "7e8c51383d43715da6147ce53ab014b348b3afde38c9c8b96e72992a1c820969",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_fomaml_s17.pt": "7c671252c86e36b9e745e782e5ef8f60070d1925d31bfe2be7eb926bcb8facbf",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_fomaml_s43.pt": "58555c0658b13bd88b361e8b14f38b2172ab1a0c144a42ae7047d214b22700fc",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_fomaml_s71.pt": "960d065fff40106079002364f1acaf8b2fce1c7ae9f19d2b13c3204151a45554",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s17.pt": "8d4a33658417428ebf3a1d138729a20c6bce2dc32ce4b9c7862b6d347048f037",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s43.pt": "24555a9eb027565ba4215f77a35eabb85b24dd65d054c42f9fc0a463173321e2",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_maml_s71.pt": "d5e9a0c032b3af0885aa27532eb9de4f6a31f1b609d7a01f8157ae8b614c1338",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_reptile_s17.pt": "c5bb5f17f4dc07c360697b14d4e39f5da443b259bfc1eba7b6ffc562ee618daa",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_reptile_s43.pt": "d099a6295c6c74a7948ec5416b4fa6440f661541d8c11d09eb8538dd25284ec8",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_meta_reptile_s71.pt": "e9e229d52d5d8a51fdb90eea2aa11c48a62fff73fef1965b92c8c792eb0cb276",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_source_manual_gru_s17.pt": "8a761a6dfaf0e470593f3fe09b9f51b18708fa0fa6e30aa2e2655a1aeda91c94",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_source_manual_gru_s43.pt": "1a6dae9bf6e0f0f68dadfe5f6b1c9b533fafd00001b6ab801562f4ed33147638",
+    "results/final_study_20261114/mac_research/afml_research/models/checkpoints/refit_source_manual_gru_s71.pt": "262725dcab81804ec0e6d5b292c362d633a4bf07f1a3f06d4b02f618c1533fb7",
+    "results/final_study_20261114/mac_research/afml_research/models/effective_config.json": "9bc9b979915c26247469ef2d2b0f73c583d96fcae6521a7549c4e19fcb9995df",
+    "results/final_study_20261114/mac_research/afml_research/models/frozen_adaptation_settings.json": "5e6044f8245744707d9c753fd64bb8d908612a05293016a809da500a79df96d0",
+    "scripts/investigation_20261115/meta_initialization_controls.py": "9f73b0c30523ae7af40e34f2617c48cf3b7fb9ba91c5e243295527ef0e0750a9"
+  },
+  "support": "Exact frozen canonical_frame/select_budget; latest B label dates <=2023-12-31, exactly3B examples"
+}

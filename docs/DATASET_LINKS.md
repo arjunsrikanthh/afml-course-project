@@ -1,15 +1,11 @@
-# Dataset links for the submission form
+# Dataset and provenance
 
-**Official public source used in the final study:** [CPCB Central Control Room AQI Repository](https://airquality.cpcb.gov.in/ccr/#/repository/aqi).
+The study used official **4 PM Daily AQI** observations from the [CPCB Central Control Room AQI Repository](https://airquality.cpcb.gov.in/ccr/#/repository/aqi). The repository provides annual station-level workbooks. Choose the state, city, station, and year to locate a workbook.
 
-Select **4 PM Daily AQI**, then the state, city, station and year. The source exports annual station-level XLSX workbooks. These are overall AQI observations, not PM2.5 concentrations. The website may require its normal browser verification or CAPTCHA.
+The frozen 2017–2025 acquisition contains **3,820 original workbooks** and **769,129 observed station-dates**. The final modeling cohort uses 23 donor cities and six held-out target cities with eligible coverage in 2020–2025. The archive inventory records missing exports, unmatched station identifiers, and range flags.
 
-**Official explanation of the index:** [CPCB National Air Quality Index](https://cpcb.nic.in/National-Air-Quality-Index/).
+- [Official CPCB National Air Quality Index technical report](https://airquality.cpcb.gov.in/ccr_docs/FINAL-REPORT_AQI_.pdf)
+- [Versioned project snapshot of CPCB exports](https://github.com/arjunsrikanthh/afml-course-project/releases/download/study-v1.0.0/CPCB_AQI_Source_Release_v1.zip)
+- [Data provenance, processing, and access notes](https://github.com/arjunsrikanthh/afml-course-project/blob/main/docs/DATA_SOURCES.md)
 
-The final study uses a frozen acquisition release containing 3,820 workbooks and 769,129 observed station-dates from the declared 2017–2025 scope. Modeling uses 2020–2025, 23 donor cities and six held-out target cities. Missing data and current-roster coverage prevent a claim of complete national historical coverage.
-
-**Reproducibility mirror:** [Versioned project release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0). This project-hosted snapshot preserves source bytes and checksums. It is separate from the official publisher. No blanket license for CPCB data is asserted.
-
-The final evaluation does not use the older Kaggle Air Quality Data in India dataset proposed in the original one-pager, or the separate pollutant/weather collection. Those exploratory sources should not replace the official source link above in the form.
-
-The dataset requirement therefore has public datasets involved; a no-public-dataset justification is unnecessary. Provenance comes from the preserved acquisition receipts and workbook checks. Live portal requests during this packaging session timed out, so this document does not claim a fresh successful live download on 15 November.
+The project snapshot preserves the values, source files, and checksums used for reproduction. CPCB is the original data publisher.

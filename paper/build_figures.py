@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--results-root', type=Path, help='Directory containing expanded/ and reference/, or the original final_study_20261114 directory')
 args = parser.parse_args()
-RUN = args.results_root or HERE.parents[2] / 'results/final_study_20261114'
+RUN = args.results_root or HERE / 'figure_data' / 'benchmark'
 if (RUN/'expanded').is_dir() and (RUN/'reference').is_dir():
     EXP = RUN/'expanded'
     COM = RUN/'reference'
@@ -71,6 +71,9 @@ d=sel(c);d=d[d.method=='transformer_pooled_zero'].sort_values('horizon')
 rows.append('Compact Transformer, pooled & '+' & '.join(f'{r.mae:.2f} / {r.rmse:.2f}' for r in d.itertuples())+r' \\')
 (HERE/'table_results.tex').write_text(r'\begin{tabular}{lrrr}\toprule'+'\n'+r'Method & One day & Two days & Three days\\\midrule'+'\n'+'\n'.join(rows)+'\n'+r'\bottomrule\end{tabular}'+'\n')
 pq=q[(q.period=='test_2025')&(q.budget==90)&(q.reference=='matched_gru_finetune')&q.method.isin(['maml_gru_sgd','fomaml_gru_sgd','reptile_gru_sgd'])]
+def source_label(path):
+ return str(path.relative_to(HERE)) if path.is_relative_to(HERE) else str(path)
+
 (HERE/'numeric_evidence.json').write_text(json.dumps({'main_B90':sel(m).to_dict('records'),'meta_B90':pq.to_dict('records'),
- 'source_metrics':str(EXP/'macro_metrics.csv'),'comparisons':str(EXP/'paired_comparisons.csv')},indent=2))
+ 'source_metrics':source_label(EXP/'macro_metrics.csv'),'comparisons':source_label(EXP/'paired_comparisons.csv')},indent=2))
 print('Built two PDF figures, table and numerical evidence.')

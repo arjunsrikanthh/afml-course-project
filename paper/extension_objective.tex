@@ -1,0 +1,11 @@
+\subsection{What produced MAML's starting deficit?}
+We train two copies of the same GRU from identical weights using the archived donor task stream, with three seeds and 1,350 outer updates per seed. The query examples are identical across copies. One objective evaluates query loss immediately. The other evaluates it after five updates on the corresponding local support examples, reproducing full MAML. All 16,200 archived task records are replayed. Reproduced MAML forecasts agree with the release within $2.6\times10^{-5}$ AQI points.
+
+\begin{table}[t]
+\caption{2025 macro MAE in AQI points before and after five shared local SGD steps ($\eta=0.03$). The paired-task rows isolate the source objective. The broader-dates row changes the query-date sampling under immediate loss.}
+\label{tab:objective}
+\centering\small
+\input{extension_objective_rows.tex}
+\end{table}
+
+The immediate objective lowers zero-step error by 1.326 points in 2025 (14-day block interval $[0.722,1.980]$). This accounts for about 83\% of the 1.590-point difference between released MAML and pooled GRU. After five shared updates, the paired gap shrinks to 0.111 points ($[-0.233,0.465]$). The analogous five-step gap in 2024 is $-0.159$ ($[-0.425,0.086]$). The broad-date control lowers 2025 zero-step MAE by a further 0.122 points ($[-0.074,0.302]$). These paired comparisons explain much of the starting gap in this GRU and task stream. The post-update differences remain imprecise.

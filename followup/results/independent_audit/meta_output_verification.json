@@ -1,0 +1,11 @@
+{
+  "blocks": 216,
+  "target_prediction_rows": 2937384,
+  "donor_prediction_rows": 938952,
+  "independent_metric_rows": 11664,
+  "independent_reproductions": 270,
+  "max_original_difference_aqi": 2.9802322387695312e-05,
+  "raw_recomputed_every_block": true,
+  "contrast_rows_verified": 19116,
+  "passed": true
+}

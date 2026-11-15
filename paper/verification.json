@@ -1,46 +1,34 @@
 {
-  "verdict": "PASS",
-  "checks": {
-    "six_pages": true,
-    "letter_size": true,
-    "no_unresolved_reference_marks": true,
-    "contains_public_repository": true,
-    "contains_conclusion": true,
-    "contains_all_ten_references": true,
-    "author_names": true,
-    "no_overfull_boxes": true,
-    "no_tex_error": true
-  },
-  "pages": 6,
-  "fonts": [
-    "AKHCZK+CMMI10",
-    "BZIVMZ+NimbusRomNo9L-MediItal",
-    "CAFSZL+CMBX10",
-    "CPUQYB+DejaVuSans",
-    "CREUWJ+DejaVuSans",
-    "DDIEWW+CMR10",
-    "DZGKAF+CMR6",
-    "FKPJSN+CMSY7",
-    "FZDNHS+NimbusMonL-Regu",
-    "IHAIZV+NimbusRomNo9L-Regu",
-    "IXFAWU+NimbusRomNo9L-Medi",
-    "JAGKKY+CMEX10",
-    "KPXLOM+CMMI8",
-    "NOMARO+CMMI5",
-    "PVTTLK+CMSY10",
-    "TQTHRL+CMR7",
-    "UTACNV+CMR8",
-    "VDVGTR+CMMI7",
-    "YEUUOC+NimbusRomNo9L-ReguItal",
-    "ZFGANO+DejaVuSans"
+  "passed": true,
+  "page_count": 8,
+  "page_size_points": [
+    612,
+    792
   ],
-  "visual_review": {
-    "all_pages_inspected": true,
-    "figures_inspected_separately": true,
-    "defects_found": 0,
-    "last_page_columns_balanced": true
-  },
-  "pdf_sha256": "49c75015780630685b4d59cbd72f925a384c6d4f7c21569e214a29458fb4ac05",
-  "tex_sha256": "0ef53023e47f2be0fa1aa2d1dca409e1c816aa0c17ecd0921aba511476b0baed",
-  "remaining_warnings": "Underfull boxes from justified text; no clipping/overlap on visual inspection. Early IEEEtran/XeTeX TU font warnings precede explicit T1 font selection; final body uses embedded Nimbus Roman fonts."
+  "final_pages_visually_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "archive_crc_ok": true,
+  "clean_source_regenerated_all_charts_and_tables_and_compiled": true,
+  "rebuild_page_text_exact": true,
+  "rebuild_generated_tables_exact": true,
+  "checked_numeric_claims_and_author_contributions": true,
+  "pdf_text_bounds_points_from_top_left": [
+    48.964,
+    49.037,
+    563.046,
+    718.696
+  ],
+  "compiler_layout_note": "A 1.48-point internal column balance warning is present. Final render and glyph bounds show no clipped text.",
+  "sha256": {
+    "AFML_IEEE_Paper.pdf": "5e788b6c86162b02c9d07758074d1f903f3f5cd62e12ed55f2d83d824de9b81f",
+    "AFML_IEEE_LaTeX_Source.zip": "888c5f6168bc481b24ab956fa0de4d49a2e0807f0d06d96463ebdb0d33d54124"
+  }
 }
