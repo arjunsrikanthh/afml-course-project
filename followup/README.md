@@ -36,7 +36,7 @@ python reproduce_followup.py donor-run --chain c
 python reproduce_followup.py donor-summarize
 ```
 
-Each chain writes to an independent directory. Run them sequentially on one host or in parallel with enough CPU and memory. The preflight verifies the 6/12/23-city nested panels, matching label totals and years, eligible support and query episodes, the nine-day episode purge, and the second-order gradient check. The final command checks the replayed forecasts against the canonical target masks and recomputes error metrics.
+Each chain writes to an independent directory. Run them sequentially on one host or in parallel with enough CPU and memory. The preflight verifies the 6/12/23-city nested panels, matching label totals and years, eligible support and query episodes, the nine-day episode purge, and the second-order gradient check. The final command independently checks the episode and forecast ledgers, recomputes errors against the canonical target masks and writes the descriptive summaries. See the [donor-panel results and audit](results/donor_diversity/).
 
 ## Protocols
 

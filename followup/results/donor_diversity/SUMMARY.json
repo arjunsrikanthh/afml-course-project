@@ -1,0 +1,8 @@
+{
+  "all_target_masks_verified": true,
+  "arms": 18,
+  "city_metric_rows": 5832,
+  "macro_rows": 972,
+  "paired_rows": 324,
+  "protocol_sha256": "8fbf1959e385afcbc43cca4c90989193e4fbef27449080f0f33fe7607f1cd9b4"
+}

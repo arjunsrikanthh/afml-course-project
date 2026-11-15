@@ -56,6 +56,21 @@ MAML started **1.590 AQI** behind pooled and improved against its own start at *
 
 The TA anticipated that ordinary transfer might beat MAML. That expectation was reasonable given the low number of independent cities. It did not specify the sign or size of the effect for each initialization, horizon, year, and update schedule. Prior work applied transfer to Indian PM₂.₅ and to limited-data daily PM₁₀. A different cold-start pollution study reported a 5.2% MAE advantage for its meta-learning method under its own 200-hour experiment, which illustrates why the expected direction needed testing. The empirical contribution here is the measured comparison for these official overall-AQI windows, including a specific, testable explanation for the deep GRU deterioration and the distinction between MAML's starting disadvantage and its ability to adapt. This work makes no priority claim. [Indian PM₂.₅ thesis](https://zenodo.org/records/20790070) · [Daily PM₁₀ transfer study](https://www.nature.com/articles/s41598-025-86550-6) · [Cold-start meta-learning study](https://onlinelibrary.wiley.com/doi/10.1155/2023/3734557)
 
+## What changing the number of donors showed
+
+The original six-versus-23 donor comparison also changed the amount of donor training data. This control used three nested donor panels (6, 12, and 23 cities) per chain, with three independent panel chains and a matched training seed within each chain. Each arm used 3,312 city-label dates, 9,936 horizon examples, and the same year totals. Supervised models received 1,200 updates in each arm. Full MAML received 300 outer updates with 90-date support and 14-date later query blocks. We shortened meta-training for the expedited investigation. The original MAML used 1,350 outer updates and mixed task budgets.
+
+| 2025 six-city macro MAE | 6 donors | 12 donors | 23 donors |
+|---|---:|---:|---:|
+| Pooled, no update | 27.267 | 26.788 | 26.734 |
+| Pooled, SGD 0.01 × 3 | 27.247 | 26.771 | 26.775 |
+| Pooled, SGD 0.03 × 10 | 28.797 | 28.092 | 27.890 |
+| MAML, no update | 29.009 | 28.786 | 29.338 |
+| MAML, SGD 0.01 × 3 | 28.976 | 28.769 | 29.228 |
+| MAML, SGD 0.03 × 10 | 29.077 | 28.943 | 29.263 |
+
+Going from six to 23 cities improved pooled MAE and worsened short-run MAML MAE in all three paired chains and all three target schedules in 2025. Moving from six to 12 donors often helped MAML, so the response was nonmonotonic. As donor count grew, per-city labels became sparser, support episodes stretched across more calendar days, and the windows touched more distinct historical AQI readings. The fixed count of labels therefore controls one part of exposure. These data show sensitivity to how the same label budget is distributed among cities, and leave the pure effect of donor count unresolved. They do not establish that 23 donors are too few, that more tasks would fix MAML, or that the original 1,350-step result arose from donor count alone. [Task-diversity experiment in prior work](https://ojs.aaai.org/index.php/AAAI/article/view/26012)
+
 ## Boundaries and remaining challenges
 
 - **Original goal.** The project completed the forecast and comparison requested in the proposal. The original accuracy target failed, and the deep-GRU and matched-initialization controls characterize that negative result. The six-city study cannot establish how often the result holds nationally.
@@ -65,4 +80,4 @@ The TA anticipated that ordinary transfer might beat MAML. That expectation was 
 
 ## Reproduction and audit
 
-The frozen adaptation and meta protocols fix every tested variant. Independent checks recomputed metrics and verified exact query and support rows across 540 adaptation blocks and 216 meta blocks, totaling 11,085,336 forecasts. Across 486 archived baseline block comparisons, maximum prediction difference was 0.000030 AQI. All 31 original artifact hashes matched. See `adaptation_contrasts.csv`, `meta_contrasts.csv`, `meta_adaptation_effects.csv`, `contrasts.csv`, `correction_decomposition.csv`, and `independent_audit/`.
+The frozen protocols fix every tested variant. Independent checks recomputed metrics and verified exact query and support rows across 540 adaptation blocks and 216 meta blocks, totaling 11,085,336 forecasts. Across 486 archived baseline block comparisons, maximum prediction difference was 0.000030 AQI. All 31 original artifact hashes matched. The donor study completed all 18 fits, two chains on the Mac and one on Instabox 1. Its independent audit checked all nine input panels and recomputed 5,832 metric rows. See `adaptation_contrasts.csv`, `meta_contrasts.csv`, `meta_adaptation_effects.csv`, `contrasts.csv`, `correction_decomposition.csv`, `donor_diversity/`, and `independent_audit/`.

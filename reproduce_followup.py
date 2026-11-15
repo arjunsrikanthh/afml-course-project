@@ -238,6 +238,9 @@ def main():
                 parser.error("donor-run requires --chain")
             options.extend(["--chain", args.chain])
         run("donor_diversity_controls.py", action, *options)
+        if action == "summarize":
+            run("verify_donor_diversity.py")
+            run("summarize_donor_composition.py", str(STAGE / RESULTS_REL / "donor_diversity"))
 
 
 if __name__ == "__main__":

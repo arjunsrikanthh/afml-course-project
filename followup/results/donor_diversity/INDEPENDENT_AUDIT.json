@@ -1,0 +1,182 @@
+{
+  "passed": true,
+  "panel_checks": 9,
+  "panels": [
+    {
+      "chain": "a",
+      "donor_count": 6,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 7649,
+      "unique_source_city_lag_or_label_dates": 7815,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 105,
+          "median": 223.0,
+          "max": 355
+        },
+        "query": {
+          "min": 14,
+          "median": 29.0,
+          "max": 133
+        }
+      }
+    },
+    {
+      "chain": "a",
+      "donor_count": 12,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 13132,
+      "unique_source_city_lag_or_label_dates": 13632,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 262,
+          "median": 416.0,
+          "max": 634
+        },
+        "query": {
+          "min": 23,
+          "median": 57.0,
+          "max": 173
+        }
+      }
+    },
+    {
+      "chain": "a",
+      "donor_count": 23,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 18328,
+      "unique_source_city_lag_or_label_dates": 19445,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 594,
+          "median": 811.5,
+          "max": 1012
+        },
+        "query": {
+          "min": 32,
+          "median": 121.0,
+          "max": 266
+        }
+      }
+    },
+    {
+      "chain": "b",
+      "donor_count": 6,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 7157,
+      "unique_source_city_lag_or_label_dates": 7340,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 109,
+          "median": 223.0,
+          "max": 361
+        },
+        "query": {
+          "min": 14,
+          "median": 28.0,
+          "max": 143
+        }
+      }
+    },
+    {
+      "chain": "b",
+      "donor_count": 12,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 12392,
+      "unique_source_city_lag_or_label_dates": 12887,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 240,
+          "median": 417.0,
+          "max": 648
+        },
+        "query": {
+          "min": 20,
+          "median": 54.0,
+          "max": 212
+        }
+      }
+    },
+    {
+      "chain": "b",
+      "donor_count": 23,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 18084,
+      "unique_source_city_lag_or_label_dates": 19180,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 595,
+          "median": 811.0,
+          "max": 1006
+        },
+        "query": {
+          "min": 37,
+          "median": 123.0,
+          "max": 279
+        }
+      }
+    },
+    {
+      "chain": "c",
+      "donor_count": 6,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 6739,
+      "unique_source_city_lag_or_label_dates": 6947,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 104,
+          "median": 224.0,
+          "max": 365
+        },
+        "query": {
+          "min": 14,
+          "median": 27.0,
+          "max": 142
+        }
+      }
+    },
+    {
+      "chain": "c",
+      "donor_count": 12,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 12381,
+      "unique_source_city_lag_or_label_dates": 12871,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 276,
+          "median": 417.0,
+          "max": 633
+        },
+        "query": {
+          "min": 20,
+          "median": 55.0,
+          "max": 193
+        }
+      }
+    },
+    {
+      "chain": "c",
+      "donor_count": 23,
+      "city_label_dates": 3312,
+      "unique_source_city_lag_dates": 18231,
+      "unique_source_city_lag_or_label_dates": 19323,
+      "episode_calendar_spans": {
+        "support": {
+          "min": 599,
+          "median": 816.0,
+          "max": 1002
+        },
+        "query": {
+          "min": 42,
+          "median": 118.0,
+          "max": 252
+        }
+      }
+    }
+  ],
+  "protocol_sha256": "8fbf1959e385afcbc43cca4c90989193e4fbef27449080f0f33fe7607f1cd9b4",
+  "panels_only": false,
+  "scored_arms": 18,
+  "city_metric_rows": 5832,
+  "original_query_rows": 9066
+}

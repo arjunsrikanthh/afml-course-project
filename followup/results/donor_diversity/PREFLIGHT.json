@@ -1,0 +1,661 @@
+{
+  "gradient": {
+    "body_gradient_l2": 0.02163638258349686,
+    "body_parameter_absolute_change": 0.8147020787000656,
+    "create_graph_fomaml": false,
+    "create_graph_full_maml": true,
+    "cudnn_used_for_meta": false,
+    "data": "artificial tensors only",
+    "device": "cpu",
+    "forward_query_loss_fomaml": 0.044589292258024216,
+    "forward_query_loss_maml": 0.044589292258024216,
+    "full_gradient_l2": 0.08857196610674893,
+    "full_maml_vs_fomaml_gradient_l2": 0.12372718781716609,
+    "manual_native_gru_max_abs_difference": 7.450580596923828e-08,
+    "passed": true
+  },
+  "panels": {
+    "a_12": {
+      "cities": [
+        "Katni",
+        "Rajamahendravaram",
+        "Ankleshwar",
+        "Patiala",
+        "Jalandhar",
+        "Khanna",
+        "Ratlam",
+        "Delhi",
+        "Alwar",
+        "Bulandshahr",
+        "Amritsar",
+        "Pali"
+      ],
+      "example_episode_calendar_spans": {
+        "Alwar": {
+          "query_days": 57,
+          "support_days": 581
+        },
+        "Amritsar": {
+          "query_days": 103,
+          "support_days": 326
+        },
+        "Delhi": {
+          "query_days": 40,
+          "support_days": 398
+        },
+        "Jalandhar": {
+          "query_days": 56,
+          "support_days": 535
+        },
+        "Katni": {
+          "query_days": 55,
+          "support_days": 369
+        },
+        "Khanna": {
+          "query_days": 64,
+          "support_days": 370
+        },
+        "Pali": {
+          "query_days": 66,
+          "support_days": 457
+        },
+        "Patiala": {
+          "query_days": 26,
+          "support_days": 417
+        },
+        "Rajamahendravaram": {
+          "query_days": 40,
+          "support_days": 396
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "a_23": {
+      "cities": [
+        "Katni",
+        "Rajamahendravaram",
+        "Ankleshwar",
+        "Patiala",
+        "Jalandhar",
+        "Khanna",
+        "Ratlam",
+        "Delhi",
+        "Alwar",
+        "Bulandshahr",
+        "Amritsar",
+        "Pali",
+        "Bengaluru",
+        "Dewas",
+        "Singrauli",
+        "Mandi Gobindgarh",
+        "Visakhapatnam",
+        "Ajmer",
+        "Patna",
+        "Muzaffarnagar",
+        "Hapur",
+        "Mandideep",
+        "Chandigarh"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 114,
+          "support_days": 879
+        },
+        "Alwar": {
+          "query_days": 73,
+          "support_days": 965
+        },
+        "Amritsar": {
+          "query_days": 146,
+          "support_days": 756
+        },
+        "Ankleshwar": {
+          "query_days": 102,
+          "support_days": 831
+        },
+        "Dewas": {
+          "query_days": 174,
+          "support_days": 806
+        },
+        "Hapur": {
+          "query_days": 132,
+          "support_days": 774
+        },
+        "Jalandhar": {
+          "query_days": 134,
+          "support_days": 868
+        },
+        "Katni": {
+          "query_days": 183,
+          "support_days": 841
+        },
+        "Mandi Gobindgarh": {
+          "query_days": 151,
+          "support_days": 759
+        },
+        "Mandideep": {
+          "query_days": 132,
+          "support_days": 755
+        },
+        "Muzaffarnagar": {
+          "query_days": 165,
+          "support_days": 654
+        },
+        "Pali": {
+          "query_days": 100,
+          "support_days": 793
+        },
+        "Patiala": {
+          "query_days": 154,
+          "support_days": 762
+        },
+        "Singrauli": {
+          "query_days": 104,
+          "support_days": 812
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "a_6": {
+      "cities": [
+        "Katni",
+        "Rajamahendravaram",
+        "Ankleshwar",
+        "Patiala",
+        "Jalandhar",
+        "Khanna"
+      ],
+      "example_episode_calendar_spans": {
+        "Ankleshwar": {
+          "query_days": 18,
+          "support_days": 144
+        },
+        "Katni": {
+          "query_days": 34,
+          "support_days": 168
+        },
+        "Khanna": {
+          "query_days": 30,
+          "support_days": 205
+        },
+        "Patiala": {
+          "query_days": 40,
+          "support_days": 225
+        },
+        "Rajamahendravaram": {
+          "query_days": 34,
+          "support_days": 206
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "b_12": {
+      "cities": [
+        "Patna",
+        "Ajmer",
+        "Pali",
+        "Chandigarh",
+        "Katni",
+        "Ankleshwar",
+        "Khanna",
+        "Bengaluru",
+        "Hapur",
+        "Muzaffarnagar",
+        "Ratlam",
+        "Amritsar"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 142,
+          "support_days": 338
+        },
+        "Amritsar": {
+          "query_days": 45,
+          "support_days": 451
+        },
+        "Ankleshwar": {
+          "query_days": 36,
+          "support_days": 430
+        },
+        "Bengaluru": {
+          "query_days": 66,
+          "support_days": 440
+        },
+        "Chandigarh": {
+          "query_days": 40,
+          "support_days": 412
+        },
+        "Hapur": {
+          "query_days": 54,
+          "support_days": 297
+        },
+        "Katni": {
+          "query_days": 68,
+          "support_days": 430
+        },
+        "Khanna": {
+          "query_days": 49,
+          "support_days": 397
+        },
+        "Muzaffarnagar": {
+          "query_days": 104,
+          "support_days": 314
+        },
+        "Pali": {
+          "query_days": 65,
+          "support_days": 453
+        },
+        "Patna": {
+          "query_days": 23,
+          "support_days": 446
+        },
+        "Ratlam": {
+          "query_days": 63,
+          "support_days": 398
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "b_23": {
+      "cities": [
+        "Patna",
+        "Ajmer",
+        "Pali",
+        "Chandigarh",
+        "Katni",
+        "Ankleshwar",
+        "Khanna",
+        "Bengaluru",
+        "Hapur",
+        "Muzaffarnagar",
+        "Ratlam",
+        "Amritsar",
+        "Rajamahendravaram",
+        "Patiala",
+        "Bulandshahr",
+        "Alwar",
+        "Mandideep",
+        "Singrauli",
+        "Dewas",
+        "Mandi Gobindgarh",
+        "Visakhapatnam",
+        "Delhi",
+        "Jalandhar"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 222,
+          "support_days": 653
+        },
+        "Ankleshwar": {
+          "query_days": 127,
+          "support_days": 849
+        },
+        "Bengaluru": {
+          "query_days": 170,
+          "support_days": 943
+        },
+        "Chandigarh": {
+          "query_days": 113,
+          "support_days": 809
+        },
+        "Dewas": {
+          "query_days": 154,
+          "support_days": 733
+        },
+        "Hapur": {
+          "query_days": 121,
+          "support_days": 787
+        },
+        "Jalandhar": {
+          "query_days": 122,
+          "support_days": 821
+        },
+        "Katni": {
+          "query_days": 92,
+          "support_days": 806
+        },
+        "Khanna": {
+          "query_days": 130,
+          "support_days": 742
+        },
+        "Mandi Gobindgarh": {
+          "query_days": 123,
+          "support_days": 901
+        },
+        "Mandideep": {
+          "query_days": 163,
+          "support_days": 776
+        },
+        "Pali": {
+          "query_days": 107,
+          "support_days": 847
+        },
+        "Patiala": {
+          "query_days": 130,
+          "support_days": 944
+        },
+        "Patna": {
+          "query_days": 141,
+          "support_days": 744
+        },
+        "Rajamahendravaram": {
+          "query_days": 158,
+          "support_days": 652
+        },
+        "Ratlam": {
+          "query_days": 67,
+          "support_days": 881
+        },
+        "Singrauli": {
+          "query_days": 155,
+          "support_days": 728
+        },
+        "Visakhapatnam": {
+          "query_days": 141,
+          "support_days": 773
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "b_6": {
+      "cities": [
+        "Patna",
+        "Ajmer",
+        "Pali",
+        "Chandigarh",
+        "Katni",
+        "Ankleshwar"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 46,
+          "support_days": 123
+        },
+        "Ankleshwar": {
+          "query_days": 34,
+          "support_days": 256
+        },
+        "Chandigarh": {
+          "query_days": 21,
+          "support_days": 195
+        },
+        "Katni": {
+          "query_days": 51,
+          "support_days": 186
+        },
+        "Pali": {
+          "query_days": 38,
+          "support_days": 207
+        },
+        "Patna": {
+          "query_days": 26,
+          "support_days": 258
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "c_12": {
+      "cities": [
+        "Ajmer",
+        "Ankleshwar",
+        "Katni",
+        "Ratlam",
+        "Mandi Gobindgarh",
+        "Hapur",
+        "Visakhapatnam",
+        "Jalandhar",
+        "Muzaffarnagar",
+        "Singrauli",
+        "Bulandshahr",
+        "Chandigarh"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 88,
+          "support_days": 410
+        },
+        "Ankleshwar": {
+          "query_days": 46,
+          "support_days": 390
+        },
+        "Bulandshahr": {
+          "query_days": 72,
+          "support_days": 413
+        },
+        "Chandigarh": {
+          "query_days": 75,
+          "support_days": 577
+        },
+        "Hapur": {
+          "query_days": 27,
+          "support_days": 433
+        },
+        "Jalandhar": {
+          "query_days": 35,
+          "support_days": 447
+        },
+        "Katni": {
+          "query_days": 35,
+          "support_days": 512
+        },
+        "Mandi Gobindgarh": {
+          "query_days": 72,
+          "support_days": 433
+        },
+        "Ratlam": {
+          "query_days": 41,
+          "support_days": 440
+        },
+        "Singrauli": {
+          "query_days": 35,
+          "support_days": 352
+        },
+        "Visakhapatnam": {
+          "query_days": 90,
+          "support_days": 357
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "c_23": {
+      "cities": [
+        "Ajmer",
+        "Ankleshwar",
+        "Katni",
+        "Ratlam",
+        "Mandi Gobindgarh",
+        "Hapur",
+        "Visakhapatnam",
+        "Jalandhar",
+        "Muzaffarnagar",
+        "Singrauli",
+        "Bulandshahr",
+        "Chandigarh",
+        "Pali",
+        "Alwar",
+        "Rajamahendravaram",
+        "Khanna",
+        "Patiala",
+        "Bengaluru",
+        "Amritsar",
+        "Delhi",
+        "Patna",
+        "Mandideep",
+        "Dewas"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 97,
+          "support_days": 822
+        },
+        "Amritsar": {
+          "query_days": 116,
+          "support_days": 837
+        },
+        "Bengaluru": {
+          "query_days": 106,
+          "support_days": 822
+        },
+        "Bulandshahr": {
+          "query_days": 134,
+          "support_days": 802
+        },
+        "Chandigarh": {
+          "query_days": 53,
+          "support_days": 988
+        },
+        "Delhi": {
+          "query_days": 111,
+          "support_days": 861
+        },
+        "Dewas": {
+          "query_days": 106,
+          "support_days": 813
+        },
+        "Hapur": {
+          "query_days": 180,
+          "support_days": 715
+        },
+        "Jalandhar": {
+          "query_days": 188,
+          "support_days": 775
+        },
+        "Katni": {
+          "query_days": 117,
+          "support_days": 816
+        },
+        "Khanna": {
+          "query_days": 82,
+          "support_days": 888
+        },
+        "Mandideep": {
+          "query_days": 164,
+          "support_days": 728
+        },
+        "Patna": {
+          "query_days": 124,
+          "support_days": 827
+        },
+        "Ratlam": {
+          "query_days": 165,
+          "support_days": 767
+        },
+        "Singrauli": {
+          "query_days": 74,
+          "support_days": 809
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    },
+    "c_6": {
+      "cities": [
+        "Ajmer",
+        "Ankleshwar",
+        "Katni",
+        "Ratlam",
+        "Mandi Gobindgarh",
+        "Hapur"
+      ],
+      "example_episode_calendar_spans": {
+        "Ajmer": {
+          "query_days": 20,
+          "support_days": 216
+        },
+        "Ankleshwar": {
+          "query_days": 25,
+          "support_days": 217
+        },
+        "Hapur": {
+          "query_days": 27,
+          "support_days": 213
+        },
+        "Katni": {
+          "query_days": 31,
+          "support_days": 240
+        },
+        "Mandi Gobindgarh": {
+          "query_days": 16,
+          "support_days": 205
+        },
+        "Ratlam": {
+          "query_days": 16,
+          "support_days": 130
+        }
+      },
+      "label_dates": 3312,
+      "labels_by_year": {
+        "2020": 552,
+        "2021": 828,
+        "2022": 1104,
+        "2023": 828
+      },
+      "rows": 9936
+    }
+  },
+  "passed": true,
+  "target_cities": [
+    "Amaravati",
+    "Guwahati",
+    "Ahmedabad",
+    "Pithampur",
+    "Ludhiana",
+    "Udaipur"
+  ]
+}
