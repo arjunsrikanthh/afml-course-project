@@ -19,7 +19,7 @@
   "clean_source_regenerated_all_charts_and_tables_and_compiled": true,
   "rebuild_page_text_exact": true,
   "rebuild_generated_tables_exact": true,
-  "checked_numeric_claims_and_author_contributions": true,
+  "checked_numeric_claims_and_author_contributions": false,
   "pdf_text_bounds_points_from_top_left": [
     48.964,
     49.037,
@@ -28,7 +28,9 @@
   ],
   "compiler_layout_note": "A 1.48-point internal column balance warning is present. Final render and glyph bounds show no clipped text.",
   "sha256": {
-    "AFML_IEEE_Paper.pdf": "5e788b6c86162b02c9d07758074d1f903f3f5cd62e12ed55f2d83d824de9b81f",
-    "AFML_IEEE_LaTeX_Source.zip": "888c5f6168bc481b24ab956fa0de4d49a2e0807f0d06d96463ebdb0d33d54124"
-  }
+    "AFML_IEEE_Paper.pdf": "f21e9f8f20c41ac0bb5401234a8f36743593ad135c2f4a63f3418d2225014841",
+    "AFML_IEEE_LaTeX_Source.zip": "cfaafce6a2be2dc6fa06e5b2d986cc1181fb2a7c18ff485da89cc75f39ed3246"
+  },
+  "author_contributions_section_absent": true,
+  "checked_numeric_claims": true
 }
