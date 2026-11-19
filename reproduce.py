@@ -37,7 +37,7 @@ def extract(archive, destination):
 
 
 def fetch(args):
-    config = json.loads((ROOT / 'configs/release-assets.json').read_text())
+    config = json.loads((ROOT / 'manifests/release-assets.json').read_text())
     name = 'AFML_Complete_Executed_Notebooks.zip'
     expected = config['assets'][name]
     ARTIFACTS.mkdir(exist_ok=True)
@@ -84,18 +84,20 @@ def prepare(args):
 
 
 def smoke(args):
-    from scripts.final_model_engine import smoke_test as reference_smoke
-    from scripts.research_model_engine import smoke_test as expanded_smoke
+    from scripts.final_model_engine import smoke_test as baseline_smoke
+    from scripts.research_model_engine import smoke_test as final_smoke
     output = ROOT / 'runs/smoke'
-    print(json.dumps({'reference': reference_smoke(output/'reference'),
-                      'expanded': expanded_smoke(output/'expanded')}, indent=2))
+    print(json.dumps({'baseline': baseline_smoke(output/'baseline'),
+                      'final': final_smoke(output/'final')}, indent=2))
 
 
 def train(args):
     from scripts.load_research_inputs import load_inputs
     run = Path(args.output).resolve() if args.output else ROOT / 'runs' / args.study
     bundle, protocol, summary = load_inputs(ROOT/'data/frozen', run/'data')
-    config = json.loads((ROOT/'configs'/f'{args.study}.json').read_text())
+    config_path = (ROOT/'configs/archive/reference.json' if args.study == 'baseline'
+                   else ROOT/'configs/final.json')
+    config = json.loads(config_path.read_text())
     config['device'] = args.device
     historical = json.loads((ROOT/'results'/args.study/'frozen_protocol.json').read_text())
     protocol.update({k: v for k, v in historical.items() if k not in protocol})
@@ -109,7 +111,7 @@ def train(args):
             raise ValueError('Resume protocol/config changed; select a new --output directory')
     else:
         frozen_path.write_text(json.dumps(protocol, indent=2, default=str)+'\n')
-    if args.study == 'reference':
+    if args.study == 'baseline':
         from scripts.final_model_engine import train_all
         from scripts.final_evaluation import evaluate
         predictions, fits = train_all(bundle, run/'models', config)
@@ -119,7 +121,7 @@ def train(args):
         from scripts.research_model_engine import train_research
         from scripts.research_analysis import analyze_research
         predictions, fits = train_research(bundle, run/'models', config)
-        reference = ROOT/'runs/reference'
+        reference = ROOT/'runs/baseline'
         analyze_research(predictions, fits, run/'evaluation', protocol,
                          compact_root=reference if (reference/'evaluation/macro_metrics.csv').exists() else None)
     print(f'Completed {args.study}: {len(predictions):,} predictions; {len(fits):,} fitting records; {run}')
@@ -130,9 +132,10 @@ def audit(args):
     from scripts.verify_research_study import verify_research_study
     if not SOURCE.exists():
         raise FileNotFoundError('Run python reproduce.py fetch first')
-    targets = [('reference',verify_study),('expanded',verify_research_study)] if args.study=='both' else [(args.study, verify_study if args.study=='reference' else verify_research_study)]
+    targets = [('baseline',verify_study),('final',verify_research_study)] if args.study=='both' else [(args.study, verify_study if args.study=='baseline' else verify_research_study)]
+    archive_names = {'baseline': 'reference', 'final': 'expanded'}
     for name, verifier in targets:
-        run = Path(args.root).resolve() if args.root else PROJECT/name
+        run = Path(args.root).resolve() if args.root else PROJECT/archive_names[name]
         output = ROOT/'runs/audits'/name
         result = verifier(run, output, SOURCE)
         print(f"{name}: {result['verdict']} ({len(result['checks'])} checks), {output}")
@@ -160,19 +163,19 @@ def main():
         ('fetch','Download, SHA256-verify and extract the public frozen source/results archive',fetch),
         ('check-inputs','Verify every cached input hash and reconstruct legal donor/target splits',check_inputs),
         ('prepare','Reparse all original workbooks and compare scientific tables with frozen inputs',prepare),
-        ('smoke','Artificial 23/33-method training, resume, leakage and derivative checks',smoke)]:
+        ('smoke','Artificial baseline/final training, resume, leakage and derivative checks',smoke)]:
         p=commands.add_parser(command,help=help_text);p.set_defaults(handler=handler)
-    p=commands.add_parser('train',help='Fit one full frozen study (hours for expanded); resumes automatically')
-    p.add_argument('--study',choices=['reference','expanded'],required=True)
+    p=commands.add_parser('train',help='Fit the baseline or final benchmark; the final benchmark takes hours')
+    p.add_argument('--study',choices=['baseline','final'],required=True)
     p.add_argument('--device',choices=['auto','cpu','mps','cuda'],default='auto')
     p.add_argument('--output');p.set_defaults(handler=train)
     p=commands.add_parser('audit',help='Independently audit saved forecasts without fitting models')
-    p.add_argument('--study',choices=['reference','expanded','both'],default='both')
+    p.add_argument('--study',choices=['baseline','final','both'],default='both')
     p.add_argument('--root',help='Explicit run root; select one --study with this option');p.set_defaults(handler=audit)
     p=commands.add_parser('synthesis',help='Execute the final research synthesis from saved audited forecasts')
     p.add_argument('--inputs');p.add_argument('--output');p.set_defaults(handler=synthesis)
     args=parser.parse_args()
-    if args.command=='audit' and args.root and args.study=='both':parser.error('--root requires --study reference or expanded')
+    if args.command=='audit' and args.root and args.study=='both':parser.error('--root requires --study baseline or final')
     args.handler(args)
 
 if __name__=='__main__':main()
