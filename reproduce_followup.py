@@ -130,7 +130,7 @@ def stage_original_audit_inputs(handle):
 
 
 def prepare(args):
-    reference_release = read_json(ROOT / "configs/release-assets.json")
+    reference_release = read_json(ROOT / "manifests/release-assets.json")
     study_name = "AFML_Complete_Executed_Notebooks.zip"
     study_asset = {"name": study_name, **reference_release["assets"][study_name]}
     reference_archive = archive_path(args.study_archive, reference_release, study_asset)

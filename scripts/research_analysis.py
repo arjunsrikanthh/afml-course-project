@@ -29,10 +29,10 @@ def analyze_research(predictions,fit_log,outdir,protocol,compact_root=None):
     summary=evaluate(predictions,out,p)
     macro=pd.read_csv(out/'macro_metrics.csv');paired=pd.read_csv(out/'paired_comparisons.csv')
     primary=macro[macro.period=='test_2025']
-    rows=['# Expanded research results','',
-      'This study was specified before the compact reference target scores were inspected. It expands computational effort to answer capacity/optimization, meta-gradient, adaptation-optimizer and donor-pool questions. All conclusions below are calculated from saved observed-target forecasts. The target periods did not tune any model.','',
+    rows=['# Final benchmark results','',
+      'This study was specified before the baseline target scores were inspected. The final benchmark adds comparisons to answer capacity/optimization, meta-gradient, adaptation-optimizer and donor-pool questions. All conclusions below are calculated from saved observed-target forecasts. The target periods did not tune any model.','',
       '## Larger models and donor-only search','',
-      'Five deeper architectures use the same legal seven-day inputs and target fitting-label budgets as the compact reference. Their training and search budgets are larger. The comparison describes the combined capacity/optimization package; it cannot isolate parameter count as a causal factor. A compact model remains a serious benchmark.','',
+      'Five deeper architectures use the same legal seven-day inputs and target fitting-label budgets as the baseline benchmark. Their training and search budgets are larger. The comparison describes the combined capacity/optimization package; it cannot isolate parameter count as a causal factor. A baseline model remains a serious benchmark.','',
       _markdown_table(primary.sort_values(['budget','horizon','mae']).groupby(['budget','horizon'],as_index=False).head(5),
        ['budget','horizon','method','mae','rmse','skill_mae','cities_improved_vs_persistence','n_cities'],45),'',
       'The lowest test error is descriptive after comparing many methods. It is not a new donor-selected deployment decision.','',
@@ -61,8 +61,8 @@ def analyze_research(predictions,fit_log,outdir,protocol,compact_root=None):
         c=d.merge(old[['budget','horizon','method','mae','rmse']].rename(columns={'method':'compact_method','mae':'compact_mae','rmse':'compact_rmse'}),on=['budget','horizon','compact_method'],validate='many_to_one')
         c['large_minus_compact_mae']=c.mae-c.compact_mae
         c.to_csv(out/'capacity_compute_comparison.csv',index=False)
-        rows.extend(['## Comparison with the compact reference','',
-          f'The larger package has lower observed macro MAE in {int((c.large_minus_compact_mae<0).sum())}/{len(c)} matched architecture/mode/budget/horizon cells. '
+        rows.extend(['## Comparison with the baseline benchmark','',
+          f'The final benchmark has lower observed macro MAE in {int((c.large_minus_compact_mae<0).sum())}/{len(c)} matched architecture/mode/budget/horizon cells. '
           'This is a descriptive cross-run comparison, conditional on the stated backend and training budgets. The independent audits verify common labels, dates and features.','',
           _markdown_table(c,['budget','horizon','method','mae','compact_method','compact_mae','large_minus_compact_mae'],30),''])
     rows.extend(['## What can be concluded','',

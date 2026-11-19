@@ -17,8 +17,10 @@ It walks through the CPCB data, the city and year splits, the model code, a runn
 | --- | --- |
 | `AFML_Demo.ipynb` | The entry point for the demo and for understanding the project. |
 | `scripts/`, `reproduce.py` | The Python implementation and commands for the complete benchmark. |
-| `configs/`, `data/frozen/` | Settings and checked inputs. The CSVs contain AQI values, forecast examples and eligibility records. The JSON files define study rules and verify file integrity. Keep these to rerun the code. |
-| `results/` | Small tables used in the demo and two protocols needed for retraining. Detailed benchmark exports are in the [output archive](results/). |
+| `configs/final.json` | The single configuration for the final 33-method benchmark. The earlier 23-method baseline settings are retained under `configs/archive/`. |
+| `manifests/release-assets.json` | SHA256 and size checks for downloadable source/results archives; used by `fetch` and the follow-up replay tools. |
+| `data/frozen/` | The checked, processed CPCB dataset, fixed cohort, forecast examples and data-quality evidence consumed by the models. |
+| `results/` | Frozen baseline/final run protocols and combined comparison tables. Full forecasts, fitting logs and checkpoints are retained in the versioned release archive. |
 | `notebooks/`, `evidence/` | Original executed notebooks, portable full-run notebooks, and records of where each run happened. |
 | `followup/`, `reproduce_followup.py`, `reproduce_extension.py` | Follow-up experiments on learning rates, donor diversity and MAML objectives. |
 | `paper/`, `slides/`, `docs/` | Submission files, sources for rebuilding the report, and instructions. |

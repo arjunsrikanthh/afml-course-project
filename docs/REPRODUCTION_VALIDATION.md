@@ -1,5 +1,7 @@
 # Public-package reproduction validation
 
+The original execution receipts and frozen release retain the historical run labels `reference` (23 methods) and `expanded` (33 methods). The current repository interface calls these `baseline` and `final`; the scientific artifacts and recorded results are unchanged.
+
 Validated on 15 November 2026, Python 3.12.15, macOS. This records the portable package checks. The original full experiments remain the archived observed runs; validation does not claim a new full-training execution.
 
 A separate checkout and an isolated virtual environment were created outside the original project. `pip install -r requirements.txt` succeeded in the new environment. The actual resolved packages are recorded in `evidence/public-package-environment.txt`. The full original execution inventory is separately preserved in `evidence/original-environment.txt`.

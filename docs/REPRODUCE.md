@@ -32,13 +32,13 @@ python reproduce.py synthesis
 
 ## Retrain the full benchmarks
 
-Full expanded retraining takes hours and benefits from CUDA or Apple MPS. Run `fetch` first if you also want to audit the new results against the original source workbooks.
+Full final-benchmark retraining takes hours and benefits from CUDA or Apple MPS. Run `fetch` first if you also want to audit the new results against the original source workbooks.
 
 ```sh
-python reproduce.py train --study reference --device cpu
-python reproduce.py train --study expanded --device auto
-python reproduce.py audit --study reference --root runs/reference
-python reproduce.py audit --study expanded --root runs/expanded
+python reproduce.py train --study baseline --device cpu
+python reproduce.py train --study final --device auto
+python reproduce.py audit --study baseline --root runs/baseline
+python reproduce.py audit --study final --root runs/final
 ```
 
 These commands use the committed, hash-checked inputs and exact frozen scientific modules. They preserve all seeds, label budgets and donor-only searches. Select `cpu`, `mps` or `cuda` explicitly if required. A completed run resumes from saved state; changing the config requires a new `--output` directory. Backend differences can change numerical results, so compare recomputed results with the preserved observed runs without claiming bitwise identity.
@@ -55,17 +55,17 @@ The study uses 23 donor cities and six held-out target cities: Amaravati, Guwaha
 
 Models use seven consecutive observed daily AQI values, issue-calendar features and a direct horizon indicator. All fitting ends in 2023; donor-only model selection uses 2023, 2024 is a secondary evaluation period, and 2025 is the main evaluation period. Target budgets are the latest 30, 90 or 180 eligible label dates by the end of 2023, with three horizon pairs per date and additional preceding input context. Seeds are 17, 43 and 71. Inputs and truth are never imputed.
 
-Scarcity is simulated fitting-label scarcity with recent rolling observations, not naturally absent sensors. Daily one-to-three-day labels approximate the original 24–72-hour scope; operational publication latency was not verified. Results concern six station series and do not establish nationwide generalization or deployment performance. Bootstrap intervals condition on the selected cities and are unadjusted for multiple comparisons. See [data/frozen/protocol.json](../data/frozen/protocol.json) and both preserved run protocols for the full contract.
+Scarcity is simulated fitting-label scarcity with recent rolling observations, not naturally absent sensors. Daily one-to-three-day labels approximate the original 24–72-hour scope; operational publication latency was not verified. Results concern six station series and do not establish nationwide generalization or deployment performance. Bootstrap intervals condition on the selected cities and are unadjusted for multiple comparisons. See [data/frozen/protocol.json](../data/frozen/protocol.json) and the preserved baseline and final run protocols for the full contract.
 
 ## Reproduction commands
 
 | Command | What it does |
 | --- | --- |
 | `check-inputs` | Verifies the frozen input files and reconstructs the donor and target splits. |
-| `smoke` | Runs small synthetic tests of the 23- and 33-method pipelines. |
+| `smoke` | Runs small synthetic tests of the baseline and final pipelines. |
 | `fetch` and `prepare` | Download the archived project and parse the original CPCB workbooks. |
 | `audit` and `synthesis` | Check the saved forecasts and recompute comparisons from those forecasts. |
-| `train --study reference` or `train --study expanded` | Train a complete benchmark from the frozen inputs. |
+| `train --study baseline` or `train --study final` | Train a complete benchmark from the frozen inputs. |
 | `python reproduce_followup.py --help` and `python reproduce_extension.py --help` | Show the commands for the follow-up experiments. |
 
 See the [record of reproduction checks](REPRODUCTION_VALIDATION.md) and the [archived output index](../results/).

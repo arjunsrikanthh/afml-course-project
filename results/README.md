@@ -1,13 +1,21 @@
-# Study results and archived exports
+# Results
 
-The [project notebook](../AFML_Demo.ipynb) reads the small summary tables in [synthesis/](synthesis/). The two `frozen_protocol.json` files under [reference/](reference/) and [expanded/](expanded/) supply settings for full retraining.
+This is one project with two retained benchmark records:
+
+- **Baseline** — the earlier 23-method comparison, retained as a reference point.
+- **Final** — the primary 33-method benchmark used for the project's final analysis.
+- **Synthesis** — comparisons calculated from the saved baseline and final forecasts.
+
+The old run labels were `reference` and `expanded`. The repository now uses `baseline` and `final` for its user-facing paths and commands. The original release archive keeps its historical internal names so existing replay tools and published checksums remain valid.
 
 | What you need | Where to find it |
 | --- | --- |
-| Full reference outputs | [23-method tables, plots and audit records](https://github.com/arjunsrikanthh/afml-course-project/tree/8f184132654470d36f3c7af2ddd8df8a1ef660d8/results/reference) |
-| Full expanded outputs | [33-method tables, plots and audit records](https://github.com/arjunsrikanthh/afml-course-project/tree/8f184132654470d36f3c7af2ddd8df8a1ef660d8/results/expanded) |
-| Full combined analysis | [Synthesis tables and plots](https://github.com/arjunsrikanthh/afml-course-project/tree/8f184132654470d36f3c7af2ddd8df8a1ef660d8/results/synthesis) |
-| Forecasts, fits, saved weights and source workbooks | [Frozen study release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) |
-| Follow-up and extension | [Follow-up findings](../followup/results/) · [Extension findings](../followup/extension/results/) |
+| Baseline frozen protocol | [`baseline/frozen_protocol.json`](baseline/frozen_protocol.json) |
+| Final frozen protocol | [`final/frozen_protocol.json`](final/frozen_protocol.json) |
+| Combined comparison tables | [`synthesis/`](synthesis/) |
+| Full original baseline outputs | [23-method archived run](https://github.com/arjunsrikanthh/afml-course-project/tree/8f184132654470d36f3c7af2ddd8df8a1ef660d8/results/reference) |
+| Full original final outputs | [33-method archived run](https://github.com/arjunsrikanthh/afml-course-project/tree/8f184132654470d36f3c7af2ddd8df8/results/expanded) |
+| Forecasts, fitting logs, saved weights and original source workbooks | [Frozen study release](https://github.com/arjunsrikanthh/afml-course-project/releases/tag/study-v1.0.0) |
+| Follow-up and extension findings | [Follow-up](../followup/results/) · [Extension](../followup/extension/results/) |
 
-The commit links preserve the exact tables that were previously listed on the default branch. To get the full outputs locally, follow the [reproduction instructions](../docs/REPRODUCE.md).
+To rerun the benchmarks, follow the [reproduction instructions](../docs/REPRODUCE.md).

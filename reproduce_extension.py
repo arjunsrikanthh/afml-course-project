@@ -64,7 +64,7 @@ def prepare(args):
     hashes = dict(cross["source_states_sha256"])
     hashes.update({name: digest for name, digest in paired["sha256"].items()
                    if Path(name).is_relative_to(replay.MODELS_REL)})
-    release = replay.read_json(replay.ROOT / "configs/release-assets.json")
+    release = replay.read_json(replay.ROOT / "manifests/release-assets.json")
     name = "AFML_Complete_Executed_Notebooks.zip"
     path = replay.archive_path(args.study_archive, release, {"name": name, **release["assets"][name]})
     with ZipFile(path) as archive:
